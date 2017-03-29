@@ -18,6 +18,7 @@
 }
 #buttonDiv{
     width: 20%;
+    
     margin:40%;
     margin-top: 10%;
     z-index: 1;
@@ -31,9 +32,10 @@
 #registerB{
     width:40%;
     padding:4%;
-    
-    font-size: 0.5em;
+    font-size: 40%;
     margin-left: 26%;
+    text-align: center;
+    overflow: 
 }
 form{
     position:fixed;
@@ -53,6 +55,7 @@ form{
 #shading{
     position: absolute;
     top:0;
+    left:0 !important;
     width:100%;
     height:200%;
     background-color: rgba(2,2,2,0.5);
@@ -67,8 +70,8 @@ form{
     
 }
 .hidden{
-    top: -200%;
+    top: -200% !important;
 }
 .invis{
-    background-color: rgba(2,2,2,0);
+    background-color: rgba(2,2,2,0) !important;
 }

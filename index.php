@@ -8,16 +8,16 @@
     <body>
         <div id="buttonDiv">
             <div class="button" id="loginB" onclick="showLogin()"><h1>LOGIN</h1></div>
-            <div class="button" id="registerB" onclick="showRegister"><h1>REGISTER</h1></div>
+            <div class="button" id="registerB" onclick="showRegister()"><h1>REGISTER</h1></div>
         </div>
-        <div id="shading"></div>
-        <form id="login">
+        <div class="invis hidden" id="shading" onclick="hide()"></div>
+        <form class="hidden" id="login">
             <h3>Username:</h3>
             <input type="text" name="uname">
             <h3>Password:</h3>
             <input type="password" name="psw">
         </form>
-        <form id="register">
+        <form class="hidden" id="register">
             <h3>Display Name:</h3>
             <input type="text" name="uname">
             <h3>Username:</h3>
