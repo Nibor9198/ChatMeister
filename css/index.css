@@ -1,20 +1,6 @@
-.button{
-    border-radius: 2px;
-    text-align: center;
-    display: block;
-    
-    cursor: pointer;
-    transition: background-color 0.5s;
-    
-    /* Taken from https://css-tricks.com/almanac/properties/u/user-select/ */
-    -webkit-user-select: none;      /* Chrome all / Safari all */
-    -moz-user-select: none;         /* Firefox all */
-    -ms-user-select: none;          /* IE 10+ */
-    user-select: none;              /* Likely future */ 
-}
-.button:hover{
-    background-color: red;
-    
+
+body{
+    overflow: hidden;
 }
 #buttonDiv{
     width: 20%;
@@ -48,7 +34,7 @@ form{
     border-radius: 2px;
     text-align: center;
     
-    transition: top 1s, visibility 2s;
+    transition: top 1s;
     
     z-index: 3;
 }
