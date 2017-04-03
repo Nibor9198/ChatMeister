@@ -1,12 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <link href="css/style.css">
-        <link href="css/.css">
-    </head>
-    <body>
-        
-    <script src="js/script.js"></script>
-    </body>
-</html>
+<?php
+include 'config.php';
+if(isset($_POST['user']) && isset($_POST['pass'])) {
+    $u = $_POST['user'];
+    $p = $_POST['pass'];
+    $sql = 
+    if($mysqli = connect_db()){
+    $result = $mysqli->query($sql);
+    print_r($mysqli->error);
+    }
+}
+
+
+
+
+
+
+?>

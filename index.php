@@ -11,13 +11,16 @@
             <div class="button" id="registerB" onclick="showRegister()"><h1>REGISTER</h1></div>
         </div>
         <div class="invis hidden" id="shading" onclick="hide()"></div>
-        <form class="hidden" id="login">
+        <form class="hidden" id="login" onsubmit="login()">
+            <h1>Login</h1>
             <h3>Username:</h3>
             <input type="text" name="uname">
             <h3>Password:</h3>
             <input type="password" name="psw">
+            <input type="submit" name="Login">
         </form>
         <form class="hidden" id="register">
+            <h1>Register</h1>
             <h3>Display Name:</h3>
             <input type="text" name="uname">
             <h3>Username:</h3>

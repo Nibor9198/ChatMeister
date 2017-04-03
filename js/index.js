@@ -29,3 +29,10 @@ function hideShade(){
 function hideShade2(){
     document.getElementById("shading").className = "invis hidden";
 }
+
+function login(){
+    
+}
+function register(){
+    
+}
