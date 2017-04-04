@@ -1,3 +1,16 @@
+$(document).ready(function(){
+   $("#login").on("submit", function(event){
+       event.preventDefault();
+       event.stopPropagation();
+   });
+    $("#register").on("submit", function(event){
+       event.preventDefault();
+       event.stopPropagation(); 
+   });
+});
+
+
+
 function showLogin(){
     document.getElementById("login").className = "";
     showShade();
@@ -30,9 +43,18 @@ function hideShade2(){
     document.getElementById("shading").className = "invis hidden";
 }
 
-function login(){
+function loginUser(){
+    var form = document.getElementById("login");
+    //console.log($form.elements.namedItem("uname").value);
+    //console.log($form.elements.namedItem("psw").value);
+    //loadDoc(url, cFunction, isPOST, message)
+    //var $obj = {"uname" : $form.elements.namedItem("uname").value, "pwd" : $form.elements.namedItem("psw").value};
     
+    loadDoc("php/login.php", loginResponse, true, 'uname=' + form.elements.namedItem("uname").value + '&psw=' + form.elements.namedItem("psw").value);
 }
-function register(){
+function loginResponse(xhttp){
+    console.log(xhttp.responseText);
+}
+function registerUser(){
     
 }

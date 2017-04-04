@@ -37,7 +37,19 @@ function prepareArray ($sql, $params, $paramTypes, $mysqli)
     }
 }
 
-
+//Not working
+function prepareSelect($what, $table, $end, $mysqli){
+    $sql = 'Select ' . $what . ' from ' . $table;
+    if($end != ''){
+        $sql .= ' ' . $end . ';';
+    }else{ 
+        $sql .= ';';
+    }
+    
+    if ($stmt = $mysqli->prepare($sql)) {
+        
+    }
+}
 
 
 
