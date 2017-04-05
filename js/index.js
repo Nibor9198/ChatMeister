@@ -56,5 +56,7 @@ function loginResponse(xhttp){
     console.log(xhttp.responseText);
 }
 function registerUser(){
+    var form = document.getElementById("register");
     
+    loadDoc("php/register.php", loginResponse, true, 'uname=' + form.elements.namedItem("uname").value + '&psw=' + form.elements.namedItem("psw").value + "&dname="+ form.elements.namedItem("dname").value + "&pswr=" + form.elements.namedItem("pswr").value);
 }

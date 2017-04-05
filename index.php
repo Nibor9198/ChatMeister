@@ -18,18 +18,19 @@
             <input type="text" name="uname">
             <h3>Password:</h3>
             <input type="password" name="psw">
-            <input type="submit" name="Login" onsubmit="return login();">
+            <input type="submit" name="Login">
         </form>
-        <form class="hidden" id="register">
+        <form class="hidden" id="register" onsubmit="registerUser()">
             <h1>Register</h1>
             <h3>Display Name:</h3>
-            <input type="text" name="uname">
+            <input type="text" name="dname">
             <h3>Username:</h3>
             <input type="text" name="uname">
             <h3>Password:</h3>
             <input type="password" name="psw">
             <h3>Repeat Password:</h3>
-            <input type="password" name="psw">
+            <input type="password" name="pswr">
+            <input type="submit" name="Register">
         </form>
         <!--
         Ajax Test buttons

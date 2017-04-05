@@ -52,8 +52,14 @@ function prepareSelect($what, $table, $end, $mysqli){
 }
 
 
+function hasha($str){
+    $hash = password_hash($str, PASSWORD_DEFAULT);
+    return $hash;
+}
 
-
+function checkPassword($userPassword, $databasehash){
+    return password_verify($userPassword, $databasehash);
+}
 
 
 
