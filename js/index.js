@@ -53,7 +53,15 @@ function loginUser(){
     loadDoc("php/login.php", loginResponse, true, 'uname=' + form.elements.namedItem("uname").value + '&psw=' + form.elements.namedItem("psw").value);
 }
 function loginResponse(xhttp){
-    console.log(xhttp.responseText);
+    alert(xhttp.responseText);
+    if(xhttp.responseText == 1){
+        var current = String(window.location);
+        
+        var url = current.substring(0, current.length - 9) + 'php/main.php';
+        location.replace(url);
+        alert(url);
+        //<?php header('location : ../php/main.php'); ?>
+    }
 }
 function registerUser(){
     var form = document.getElementById("register");
