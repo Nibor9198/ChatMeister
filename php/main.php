@@ -26,7 +26,18 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
             //echo $_SESSION['ID'];
             
         ?>
-    
+        <div id="serverList"></div>
+        <div id="friendList"></div>
+        <div id="chatRoom">
+            <div id="roomList">
+            </div>
+            <div id = "chat">
+                <div class = "text" id="chatWindow"></div>
+                <div class="text" id="textFeild"></div>
+                <div class="button"></div>
+            </div>
+        </div>
     <script src="../js/script.js"></script>
+    <script src="../js/main.js"></script>
     </body>
 </html>

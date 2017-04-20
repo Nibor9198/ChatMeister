@@ -1,3 +1,4 @@
+
 body{
     margin:0px;
     padding:0px;
@@ -28,4 +29,35 @@ nav li{
 }
 nav li:hover{
     background-color: bisque;
+}
+
+div{
+    width: 20px;
+    height: 20px;
+    background-color: green;
+    border-radius: 5px;
+}
+#serverList{
+
+}
+#friendList{
+
+}
+#chatRoom{
+
+}
+#roomList{
+
+}
+#chat{
+
+}
+#chatWindow{
+
+}
+#textFeild{
+
+}
+.text{
+
 }
