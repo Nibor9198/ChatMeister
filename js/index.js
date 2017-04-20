@@ -57,9 +57,10 @@ function loginResponse(xhttp){
     if(xhttp.responseText == 1){
         var current = String(window.location);
         
-        var url = current.substring(0, current.length - 9) + 'php/main.php';
-        location.replace(url);
-        alert(url);
+        //var url = current.substring(0, current.length - 9) + 'php/main.php';
+        //location.replace(url);
+        location.replace('php/main.php');
+        //alert(url);
         //<?php header('location : ../php/main.php'); ?>
     }
 }
