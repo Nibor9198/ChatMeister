@@ -17,7 +17,7 @@ create table Chat(
     Name varchar(50),
     isPublic boolean,
     Ownerid integer not null,
-    FOREIGN KEY (Ownerid) REFERENCES User(ID),
+    FOREIGN KEY (Ownerid) REFERENCES User(ID)
 );
 
 create table MemberOf(

@@ -55,7 +55,7 @@ form{
     
 }
 .hidden{
-    top: -200% !important;
+    top: -2000px !important;
 }
 .invis{
     background-color: rgba(2,2,2,0) !important;
