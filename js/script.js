@@ -25,3 +25,7 @@ function loadDoc(url, cFunction, isPOST, message) {
 function testfunc(xhttp){
     document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + xhttp.responseText;
 }
+function logout(){
+    loadDoc("../php/logout.php", function none(){}, true, "");
+    location.replace("../index.php");
+}

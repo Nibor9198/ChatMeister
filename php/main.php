@@ -3,9 +3,7 @@ session_start();
 
 if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['ID']))){
     header('Location:../index.php');
-    echo 'hej';
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,7 +15,7 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
     <body>
         <nav>
             <!--<table><tr><td><?php //echo $_SESSION['DNAME']; ?></td></tr></table>-->
-            <ul><li><?php echo $_SESSION['DNAME']; ?></li><li>Thing</li></ul>
+            <ul><li><?php echo $_SESSION['DNAME']; ?></li><li>Thing</li><li onclick="logout()">Logout</li></ul>
         </nav>
         
         
