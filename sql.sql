@@ -36,3 +36,11 @@ create table Invited(
     FOREIGN KEY (UID2) REFERENCES User(ID),
     FOREIGN KEY (Chatid) REFERENCES Chat(ID)
 );
+create table Message(
+    MID integer not null,
+    CDate timestamp,
+    UID integer not null,
+    Chatid integer not null,
+    FOREIGN KEY (UID) REFERENCES User(ID),
+    FOREIGN KEY (Chatid) REFERENCES Chat(ID)
+);

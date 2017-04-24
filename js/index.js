@@ -37,7 +37,7 @@ function showShade(){
 }
 function hideShade(){
     document.getElementById("shading").className = "invis";
-    setTimeout(hideShade2,500);
+    setTimeout(hideShade2,1000);
 }
 function hideShade2(){
     document.getElementById("shading").className = "invis hidden";
