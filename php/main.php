@@ -37,7 +37,7 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
                 <div class = "text" id="chatWindow"></div>
                 <form id="chat">
                     <input type="text" id="textFeild">
-                    <div class="button" id="send">Send</div>
+                    <div class="button" id="send" onclick="refresh()">Send</div>
                 </form>
                 
             </div>

@@ -37,7 +37,8 @@ create table Invited(
     FOREIGN KEY (Chatid) REFERENCES Chat(ID)
 );
 create table Message(
-    MID integer not null,
+    MID integer not null auto_increment primary key,
+    text varchar(50),
     CDate timestamp,
     UID integer not null,
     Chatid integer not null,
