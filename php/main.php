@@ -22,9 +22,9 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
         <?php
             
             //echo $_SESSION['ID'];
-            
+            /* onclick="showLeft()" */
         ?>
-        <div class="button" id="BLeftBar" onclick="showLeft()"></div>
+        <div class="button" id="BLeftBar" onclick="refresh()"></div>
         <div id="leftBar"></div>
         
         <div id="serverList"></div>
@@ -34,8 +34,11 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
             </div>
             <div id = "chat">
                 <div class="button" id="join"></div>
-                <div class = "text" id="chatWindow"></div>
-                <form id="chat">
+                <div class = "text" id="chatWindow">
+                    Hello <br>
+                    
+                </div>
+                <form id="chat" onsubmit="send()">
                     <input type="text" id="textFeild">
                     <div class="button" id="send" onclick="refresh()">Send</div>
                 </form>

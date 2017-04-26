@@ -9,25 +9,27 @@
                 $stmt->execute();
                 $stmt->bind_result($UID, $text);
                 
-                $texts = [];
+                $texts = array();
                 while($stmt->fetch()){
                     $sql2 = "select DisplayName from user where ID = ?";
-                    $name = "fail";
-                    if($stmt2 = $mysqli->prepare($sql2)){
-                        $stmt2->bind_param("i", $UID);
-                        $stmt2->execute();
-                        $stmt2->bind_result($name);
-                        $stmt2->fetch();
-                        
-                        
+                    $name = "Herobrine";
+                    if($mysqli2 = connect_db()){
+                        if($stmt2 = $mysqli2->prepare($sql2)){
+                            $stmt2->bind_param("i", $UID);
+                            $stmt2->execute();
+                            $stmt2->bind_result($name);
+                            $stmt2->fetch();
+                        }
                     }
-                    $texts[] = $name . ": " . $text;
+                    
+                    //$texts[] = $name . ": " . $text;
+                    $texts[count($texts)] = array($name, $text);
                 }
                 $json = json_encode($texts);
                 echo $json;
             }
         }    
     }else{
-        echo "bajs";
+        echo "No messages";
     }
 ?>
