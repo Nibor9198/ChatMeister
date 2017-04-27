@@ -13,15 +13,22 @@ $(document).ready(function(){
 
 function showLogin(){
     document.getElementById("login").className = "";
+    alert(Array.from(document.getElementById("login").getElementsByTagName("input")));
+    setDisabled("login",false);
     showShade();
 }
 function hideLogin(){
     document.getElementById("login").className = "hidden";
+    setDisabled("login",true);
     hideShade();
 }
 function hide(){
     document.getElementById("login").className = "hidden";
+    setDisabled("login",true);
     document.getElementById("register").className = "hidden";
+    document.getElementById("login").elements.getElementsByTagName("input").forEach( function callback(element, i, arr){
+        element.prop("disabled", false);
+    });
     hideShade();
 }
 function showRegister(){
@@ -68,4 +75,11 @@ function registerUser(){
     var form = document.getElementById("register");
     
     loadDoc("php/register.php", loginResponse, true, 'uname=' + form.elements.namedItem("uname").value + '&psw=' + form.elements.namedItem("psw").value + "&dname="+ form.elements.namedItem("dname").value + "&pswr=" + form.elements.namedItem("pswr").value);
+}
+
+function setDisabled(string, bool){
+    Array.from(document.getElementById(string).getElementsByTagName("input")).forEach( function callback(element, i, arr){
+        
+        element.prop("disabled", bool);
+    });
 }
