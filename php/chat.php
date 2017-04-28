@@ -1,6 +1,6 @@
 <?php
     include "../config.php";
-
+    
     if(isset($_POST['id'])){
         if($mysqli = connect_db()){
             $sql = "select UID, text from message where Chatid = ?";
@@ -19,6 +19,7 @@
                             $stmt2->execute();
                             $stmt2->bind_result($name);
                             $stmt2->fetch();
+                            $stmt2->close();
                         }
                     }
                     
@@ -29,7 +30,26 @@
                 echo $json;
             }
         }    
-    }else{
+    }else if(isset($_POST['message']) && $_POST['cid']){
+        
+        if($mysqli3 = connect_db()){
+            session_start();
+            echo $_POST['cid'];
+         $sql = "insert into message values (0,?,now(),?,?)";
+            if($stmt3 = $mysqli3->prepare($sql)){
+                $message = $_POST['message'];
+                $id = $_SESSION['ID'];
+                $cid = $_POST['cid'];
+                $stmt3->bind_param("sii",$message,$id,$cid);
+                $stmt3->execute();
+                echo'apa';
+                //$stmt3->fetch();
+                $stmt3->close();
+            }
+        }
+        
+        
+    }else {
         echo "No messages";
     }
 ?>

@@ -8,6 +8,11 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
 <!DOCTYPE html>
 <html>
     <head>
+        <script>
+        var name = "<?php
+                echo $_SESSION['UNAME'];
+            ?>";
+        </script>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/main.css">
@@ -40,11 +45,12 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
                 </div>
                 <form id="chat" onsubmit="send()">
                     <input type="text" id="textFeild">
-                    <div class="button" id="send" onclick="refresh()">Send</div>
+                    <div class="button" id="send" onclick="send()">Send</div>
                 </form>
                 
             </div>
         </div>
+        
     <script src="../js/script.js"></script>
     <script src="../js/main.js"></script>
     </body>

@@ -17,7 +17,7 @@ if(isset($_POST['uname']) && isset($_POST['psw'])) {
                     $_SESSION['UNAME'] = $u;
                     $_SESSION['DNAME'] = $dn;
                     echo 1;
-                    
+                    setcookie("uname", $_SESSION['UNAME'], time() + 2 * 3600,"/");
                     
                 }else{
                     echo $hp . ' ' . $Pass;

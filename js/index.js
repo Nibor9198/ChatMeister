@@ -13,7 +13,6 @@ $(document).ready(function(){
 
 function showLogin(){
     document.getElementById("login").className = "";
-    alert(Array.from(document.getElementById("login").getElementsByTagName("input")));
     setDisabled("login",false);
     showShade();
 }
@@ -26,17 +25,17 @@ function hide(){
     document.getElementById("login").className = "hidden";
     setDisabled("login",true);
     document.getElementById("register").className = "hidden";
-    document.getElementById("login").elements.getElementsByTagName("input").forEach( function callback(element, i, arr){
-        element.prop("disabled", false);
-    });
+    setDisabled("register",true);
     hideShade();
 }
 function showRegister(){
     document.getElementById("register").className = "";
+    setDisabled("register",false);
     showShade();
 }
 function hideRegister(){
     document.getElementById("register").className = "hidden";
+    setDisabled("register",true);
     hideShade();
 }
 function showShade(){
@@ -80,6 +79,6 @@ function registerUser(){
 function setDisabled(string, bool){
     Array.from(document.getElementById(string).getElementsByTagName("input")).forEach( function callback(element, i, arr){
         
-        element.prop("disabled", bool);
+        element.disabled = bool;//prop("disabled", bool);
     });
 }
