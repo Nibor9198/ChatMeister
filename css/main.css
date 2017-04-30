@@ -57,7 +57,10 @@ div{
 
 }
 #chatRoom{
-
+    width:50%;
+    margin-left: 25%;
+    height:600px;
+    overflow: hidden;
 }
 #roomList{
 
@@ -67,19 +70,22 @@ div{
     height:500px;
     margin-left: 200px;
     position: relative;
+    
 }
 #chatWindow{
     width: 400px;
     height:400px;
     background-color: aliceblue;
-        
+    overflow-y: scroll;
+    overflow-x:visible;
+    
 }
 #textFeild{
-    width:50px;
+    width:200px;
     position: relative;
     vertical-align: bottom;
     margin-top: 40px;
 }
 .text{
-
+   
 }

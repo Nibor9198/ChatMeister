@@ -50,7 +50,7 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
                 
             </div>
         </div>
-        
+        <script src="../js/jquery.js"></script>
     <script src="../js/script.js"></script>
     <script src="../js/main.js"></script>
     </body>

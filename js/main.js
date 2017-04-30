@@ -1,3 +1,24 @@
+var w;
+$(document).ready(function(){
+   $("#chat").on("submit", function(event){
+       event.preventDefault();
+       event.stopPropagation();
+   });
+    refresh();
+    
+    if (typeof(Worker) !== "undefined") {
+        w = new Worker("../js/chatWorker.js");
+        w.postMessage([0,1]);
+        //w.postMessage([0,2]);
+        
+    // Yes! Web worker support!
+    // Some code.....
+} else {
+    alert("NO!");
+    // Sorry! No Web Worker support..
+} 
+});
+
 function refresh(){
     loadDoc("../php/chat.php", chatResponse, true, 'id=1');
 }
