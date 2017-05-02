@@ -17,6 +17,7 @@ create table Chat(
     Name varchar(50),
     isPublic boolean,
     Ownerid integer not null,
+    Number integer default 0,
     FOREIGN KEY (Ownerid) REFERENCES User(ID)
 );
 
@@ -45,3 +46,10 @@ create table Message(
     FOREIGN KEY (UID) REFERENCES User(ID),
     FOREIGN KEY (Chatid) REFERENCES Chat(ID)
 );
+-- Funkar inte
+create trigger message_count
+ON chatmeister.message
+AFTER INSERT AS
+BEGIN
+UPDATE chat set number = (number + 1) where ID = (Select Chatid from message order by mid desc limit 1 )
+END;

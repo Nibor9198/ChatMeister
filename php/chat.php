@@ -45,6 +45,7 @@
                 echo'apa';
                 //$stmt3->fetch();
                 $stmt3->close();
+                
             }
         }
         

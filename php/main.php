@@ -33,18 +33,20 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
         <div id="leftBar"></div>
         <div class="button" id="BLeftBar" onclick="toggleLeft()"></div>
         
-        <div id="serverList"></div>
+        
         <div id="friendList"></div>
         <div id="chatRoom">
+            <div id="serverList"></div>
             <div id="roomList">
             </div>
-            <div id = "chat">
+            <div id="chat">
                 <div class="button" id="join"></div>
                 <div class = "text" id="chatWindow">
                     Hello <br>
                     
                 </div>
-                <form id="chat" onsubmit="send()">
+                <form  onsubmit="send()">
+                    
                     <input type="text" id="textFeild">
                     <div class="button" id="send" onclick="send()">Send</div>
                 </form>

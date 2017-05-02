@@ -2,6 +2,8 @@
 body{
     margin:0px;
     padding:0px;
+    height: 100%;
+    overflow: hidden;
 }
 nav{
     width:100%;
@@ -59,7 +61,8 @@ div{
 }
 
 #serverList{
-
+    background-color: blueviolet;
+    float:left;
 }
 #friendList{
 

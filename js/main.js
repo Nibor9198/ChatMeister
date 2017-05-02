@@ -1,4 +1,5 @@
 var w;
+var chosen = 0;
 $(document).ready(function(){
    $("#chat").on("submit", function(event){
        event.preventDefault();
@@ -30,7 +31,7 @@ function chatResponse(xhttp){
     //alert(xhttp.responseText);
     var json = xhttp.responseText;
     var array = JSON.parse(json);
-    document.getElementById("chatWindow").innerHTML = "";
+    var chatString = "";
     array.forEach(function callback(string, i, arr){
        //var chat = document.getElementById("chatWindow").innerHTML;
         
@@ -40,11 +41,15 @@ function chatResponse(xhttp){
         var cookie = getCookie("uname");
         
         if(string[0] == cookie){
-            addRow(cookie,string[1]);
+            chatString = chatSyntax(chatString,cookie,string[1]);
         }else{
-            addRow(string[0],string[1]);
+            chatString = chatSyntax(chatString, string[0],string[1]);
         }
  });
+    if (!(chatString == document.getElementById("chatWindow").innerHTML)){
+        document.getElementById("chatWindow").innerHTML = chatString;
+        
+    }
 }
 //Send messages
 function send(){
@@ -60,9 +65,17 @@ function sendResponse(xhttp){
     alert(xhttp.responseText);
 }
 //Adds a row to the chat window
-function addRow(user, text){
-    document.getElementById("chatWindow").innerHTML = document.getElementById("chatWindow").innerHTML + "<p>" + user + ": " + text + "\n" + "</p>";
+//function addRow(user, text){
+//    document.getElementById("chatWindow").innerHTML = document.getElementById("chatWindow").innerHTML + "<p>" + user + ": " + text + "\n" + "</p>";
+//    }
+//
+function chatSyntax(string, user, text){
+   return string + "<p>" + user + ": " + text + "\n" + "</p>";
+    
     }
+function setChat(){
+    
+}
 
 // this function is taken from stackoverflow http://stackoverflow.com/questions/10730362/get-cookie-by-name
 function getCookie(name) {
