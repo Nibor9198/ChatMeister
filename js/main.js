@@ -10,6 +10,9 @@ $(document).ready(function(){
         w = new Worker("../js/chatWorker.js");
         w.postMessage([0,1]);
         //w.postMessage([0,2]);
+        w.onmessage = function(event){
+            refresh();
+        }
         
     // Yes! Web worker support!
     // Some code.....
@@ -46,6 +49,7 @@ function chatResponse(xhttp){
 //Send messages
 function send(){
     string = document.getElementById("textFeild").value;
+    document.getElementById("textFeild").value = "";
     loadDoc("../php/chat.php", sendResponse, true, 'message=' + string + '&cid=1');
     //var cookie = getCookie("uname");
     //addRow(cookie.valueOf, string);
@@ -65,4 +69,22 @@ function getCookie(name) {
   var value = "; " + document.cookie;
   var parts = value.split("; " + name + "=");
   if (parts.length == 2) return parts.pop().split(";").shift();
+}
+//function showLeft(){
+//    document.getElementById("leftBar").className = "extended";
+//    console.log("Hello");
+//    document.getElementById("BLeftBar").onclick = "hideLeft()";
+    
+//}
+//function hideLeft(){
+//    document.getElementById("leftBar").className = ""
+//    document.getElementById("BLeftBar").onclick = showLeft();
+//}
+function toggleLeft(){
+    var string;
+    if(document.getElementById("leftBar").className == ""){
+         document.getElementById("leftBar").className = "extended";
+    }else{
+         document.getElementById("leftBar").className = "";
+    }
 }

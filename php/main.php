@@ -29,8 +29,9 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
             //echo $_SESSION['ID'];
             /* onclick="showLeft()" */
         ?>
-        <div class="button" id="BLeftBar" onclick="refresh()"></div>
+        
         <div id="leftBar"></div>
+        <div class="button" id="BLeftBar" onclick="toggleLeft()"></div>
         
         <div id="serverList"></div>
         <div id="friendList"></div>
