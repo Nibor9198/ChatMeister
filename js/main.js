@@ -5,8 +5,7 @@ $(document).ready(function(){
        event.preventDefault();
        event.stopPropagation();
    });
-    refresh();
-    
+    //Creates a worker
     if (typeof(Worker) !== "undefined") {
         w = new Worker("../js/chatWorker.js");
         w.postMessage([0,1]);
@@ -15,6 +14,7 @@ $(document).ready(function(){
             var id = event.data[0];
             loadDoc("../php/Chat.php",checkUpdate, true,"cid=" + id);
         }
+        loadDoc("../php/Chat.php", )
         
     // Yes! Web worker support!
     // Some code.....

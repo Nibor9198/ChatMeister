@@ -51,7 +51,6 @@
                     $cid = $_POST['cid'];
                     $stmt3->bind_param("i", $cid);
                     $stmt3->execute();
-                    //$stmt3->fetch();
                     $stmt3->close();
                 }
             }
