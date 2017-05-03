@@ -16,8 +16,13 @@ function loadDoc(url, cFunction, isPOST, message) {
         xhttp.send();
     }
 }
-
-
+//Gets a cookie by name
+// This function is taken from stackoverflow http://stackoverflow.com/questions/10730362/get-cookie-by-name
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
 
 
 

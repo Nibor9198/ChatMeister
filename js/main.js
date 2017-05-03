@@ -12,7 +12,8 @@ $(document).ready(function(){
         w.postMessage([0,1]);
         //w.postMessage([0,2]);
         w.onmessage = function(event){
-            refresh();
+            var id = event.data[0];
+            loadDoc("../php/Chat.php",checkUpdate, true,"cid=" + id);
         }
         
     // Yes! Web worker support!
@@ -22,6 +23,10 @@ $(document).ready(function(){
     // Sorry! No Web Worker support..
 } 
 });
+
+function checkUpdate(xhttp){
+    console.log("Update: " + xhttp.responseText);
+}
 
 function refresh(){
     loadDoc("../php/chat.php", chatResponse, true, 'id=1');
@@ -73,16 +78,11 @@ function chatSyntax(string, user, text){
    return string + "<p>" + user + ": " + text + "\n" + "</p>";
     
     }
-function setChat(){
-    
+function setChat(index){
+    chosen = index;
 }
 
-// this function is taken from stackoverflow http://stackoverflow.com/questions/10730362/get-cookie-by-name
-function getCookie(name) {
-  var value = "; " + document.cookie;
-  var parts = value.split("; " + name + "=");
-  if (parts.length == 2) return parts.pop().split(";").shift();
-}
+
 //function showLeft(){
 //    document.getElementById("leftBar").className = "extended";
 //    console.log("Hello");
@@ -100,4 +100,8 @@ function toggleLeft(){
     }else{
          document.getElementById("leftBar").className = "";
     }
+}
+
+function joinChat(){
+    
 }
