@@ -14,7 +14,7 @@ $(document).ready(function(){
             var id = event.data[0];
             loadDoc("../php/Chat.php",checkUpdate, true,"cid=" + id);
         }
-        loadDoc("../php/Chat.php", )
+        loadDoc("../php/Chat.php", addChatResponse, true, "command=addChat");
         
     // Yes! Web worker support!
     // Some code.....
@@ -102,6 +102,9 @@ function toggleLeft(){
     }
 }
 
-function joinChat(){
+function addChatResponse(){
+    
+}
+function addChat(){
     
 }

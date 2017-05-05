@@ -65,10 +65,24 @@
                 $cid = $_POST['cid'];
                 $stmt3->bind_param("i",$cid);
                 $stmt3->execute();
-                //$stmt3->fetch();
                 $stmt3->close();
             }
-    }else {
+        }
+    }else if(isset($_POST['command']) && isset($_POST['id']) && $_POST['command'] == "getChats"){
+        if($mysqli = connect_db()){
+            echo $_POST['id'];
+         $sql = "select Chatid from chat where id = ?";
+            if($stmt3 = $mysqli3->prepare($sql)){
+                $message = $_POST['message'];
+                $cid = $_POST['cid'];
+                $stmt3->bind_param("i",$cid);
+                $stmt3->execute();
+                $stmt3->close();
+            }
+        }
+        
+    }else{
+            
         echo "No messages";
     }
     
