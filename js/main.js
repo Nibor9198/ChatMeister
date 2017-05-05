@@ -12,9 +12,9 @@ $(document).ready(function(){
         //w.postMessage([0,2]);
         w.onmessage = function(event){
             var id = event.data[0];
-            loadDoc("../php/Chat.php",checkUpdate, true,"cid=" + id);
+            loadDoc("../php/Chat.php",checkUpdate, true,"cid=" + id + "&cm=checkUpdate");
         }
-        loadDoc("../php/Chat.php", addChatResponse, true, "command=addChat");
+        loadDoc("../php/Chat.php", addChatResponse, true, "cm=addChat");
         
     // Yes! Web worker support!
     // Some code.....
@@ -29,7 +29,7 @@ function checkUpdate(xhttp){
 }
 
 function refresh(){
-    loadDoc("../php/chat.php", chatResponse, true, 'id=1');
+    loadDoc("../php/chat.php", chatResponse, true, 'cm=getChat&cid=1');
 }
 //
 function chatResponse(xhttp){
@@ -60,7 +60,7 @@ function chatResponse(xhttp){
 function send(){
     string = document.getElementById("textFeild").value;
     document.getElementById("textFeild").value = "";
-    loadDoc("../php/chat.php", sendResponse, true, 'message=' + string + '&cid=1');
+    loadDoc("../php/chat.php", sendResponse, true, 'cm=sendMessage&message=' + string + '&cid=1');
     //var cookie = getCookie("uname");
     //addRow(cookie.valueOf, string);
     
