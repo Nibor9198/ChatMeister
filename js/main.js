@@ -8,13 +8,13 @@ $(document).ready(function(){
     //Creates a worker
     if (typeof(Worker) !== "undefined") {
         w = new Worker("../js/chatWorker.js");
-        w.postMessage([0,1]);
+        
         //w.postMessage([0,2]);
         w.onmessage = function(event){
             var id = event.data[0];
-            loadDoc("../php/Chat.php",checkUpdate, true,"cid=" + id + "&cm=checkUpdate");
+            loadDoc("../php/Chat.php",checkUpdate, true,"cid=" + 1 + "&cm=checkUpdate");
         }
-        loadDoc("../php/Chat.php", addChatResponse, true, "cm=addChat");
+        loadDoc("../php/Chat.php", addChatResponse, true, "cm=getChats&id=" + getCookie("id"));
         
     // Yes! Web worker support!
     // Some code.....
@@ -25,7 +25,7 @@ $(document).ready(function(){
 });
 
 function checkUpdate(xhttp){
-    console.log("Update: " + xhttp.responseText);
+    console.log("Update: " + JSON.parse(xhttp.responseText)[1]);
 }
 
 function refresh(){
@@ -102,8 +102,13 @@ function toggleLeft(){
     }
 }
 
-function addChatResponse(){
-    
+function addChatResponse(xhttp){
+    console.log(xhttp.responseText);
+    var array = JSON.parse(xhttp.responseText);
+    for (i = 0; i < array[0].length; i++) {
+        createCookie(array[0][i], array[0][i]);
+        w.postMessage([0,array[0][i]]);
+    }
 }
 function addChat(){
     
