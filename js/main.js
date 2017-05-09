@@ -11,7 +11,7 @@ $(document).ready(function(){
         
         //w.postMessage([0,2]);
         w.onmessage = function(event){
-            var id = event.data[0];
+            var id = event.data;
             //console.log("ID = " + id);
             loadDoc("../php/Chat.php",checkUpdate, true,"cid=" + id + "&cm=checkUpdate");
         }
@@ -23,13 +23,25 @@ $(document).ready(function(){
     alert("NO!");
     // Sorry! No Web Worker support..
 } 
+    setTimeout(scrollDown(), 1000);
+    
 });
 
+function scrollDown(){
+    var scroll = document.getElementById("chatWindow");
+    scroll.scrollTop = scroll.scrollHeight;
+    
+}
+function isScrolledDown(){
+    var scroll = document.getElementById("chatWindow");
+    return (scroll.scrollTop > scroll.scrollHeight - 500);
+}
+
 function checkUpdate(xhttp){
-    console.log( "apa " + xhttp.responseText);
     var a =  JSON.parse(xhttp.responseText);
+    //console.log( "apa " + a);
     //console.log("knas" + getCookie("Bababer"));
-    console.log("Update: " + a[0]);
+    //console.log("Update: " + a[0]);
     if(getCookie(a[0]) == undefined){
         createCookie(a[0], a[1] - 1);
     }
@@ -51,6 +63,7 @@ function refresh(id){
     loadDoc("../php/chat.php", chatResponse, true, 'cm=getChat&cid=' + id);
 }
 function chatResponse(xhttp){
+    var bool = isScrolledDown();
     console.log(xhttp.responseText);
     var json = xhttp.responseText;
     var array = JSON.parse(json);
@@ -61,18 +74,19 @@ function chatResponse(xhttp){
         //document.getElementById("chatWindow").innerHTML = document.getElementById("chatWindow").innerHTML + string + "\n";
         
         //document.getElementById("chatWindow").innerHTML = document.getElementById("chatWindow").innerHTML + "<p>" string + " : " + string + "\n" "</p>";
-        var cookie = getCookie("uname");
+        var cookie = getCookie("dname");
         
         if(string[0] == cookie){
-            chatString = chatSyntax(chatString,cookie,string[1]);
+            chatString = chatSyntax(chatString,"You",string[1]);
         }else{
             chatString = chatSyntax(chatString, string[0],string[1]);
         }
  });
-    if (!(chatString == document.getElementById("chatWindow").innerHTML)){
         document.getElementById("chatWindow").innerHTML = chatString;
-        
-    }
+        console.log(bool);
+        if(bool)
+            scrollDown();
+    
 }
 //Send messages
 function send(){
@@ -86,7 +100,8 @@ function send(){
 }
 //Debug for sending messages
 function sendResponse(xhttp){
-    alert(xhttp.responseText);
+    //alert(xhttp.responseText);
+    refresh(chosen);
 }
 //Adds a row to the chat window
 //function addRow(user, text){

@@ -5,7 +5,7 @@ function checkChat(id){
     console.log("Checking " + id);
     //alert("Checking " + id);
     postMessage(id);
-    setTimeout("checkChat(" +id +")", 500);
+    setTimeout("checkChat(" +id +")", 1000);
     //post id är undefined, kan vara senare.
 }
 onmessage = function(e){
