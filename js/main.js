@@ -12,7 +12,8 @@ $(document).ready(function(){
         //w.postMessage([0,2]);
         w.onmessage = function(event){
             var id = event.data[0];
-            loadDoc("../php/Chat.php",checkUpdate, true,"cid=" + 1 + "&cm=checkUpdate");
+            //console.log("ID = " + id);
+            loadDoc("../php/Chat.php",checkUpdate, true,"cid=" + id + "&cm=checkUpdate");
         }
         loadDoc("../php/Chat.php", addChatResponse, true, "cm=getChats&id=" + getCookie("id"));
         
@@ -25,15 +26,32 @@ $(document).ready(function(){
 });
 
 function checkUpdate(xhttp){
-    console.log("Update: " + JSON.parse(xhttp.responseText)[1]);
+    console.log( "apa " + xhttp.responseText);
+    var a =  JSON.parse(xhttp.responseText);
+    //console.log("knas" + getCookie("Bababer"));
+    console.log("Update: " + a[0]);
+    if(getCookie(a[0]) == undefined){
+        createCookie(a[0], a[1] - 1);
+    }
+    if(getCookie(a[0]) != a[1]) {
+        
+        createCookie(a[0], a[1]);
+        if(a[0] == chosen){
+            refresh(a[0]);
+        }else{
+            console.log(a[0] + "is not chosen");
+        }
+        
+    }
+    
+    
 }
 
-function refresh(){
-    loadDoc("../php/chat.php", chatResponse, true, 'cm=getChat&cid=1');
+function refresh(id){
+    loadDoc("../php/chat.php", chatResponse, true, 'cm=getChat&cid=' + id);
 }
-//
 function chatResponse(xhttp){
-    //alert(xhttp.responseText);
+    console.log(xhttp.responseText);
     var json = xhttp.responseText;
     var array = JSON.parse(json);
     var chatString = "";
@@ -58,12 +76,13 @@ function chatResponse(xhttp){
 }
 //Send messages
 function send(){
-    string = document.getElementById("textFeild").value;
-    document.getElementById("textFeild").value = "";
-    loadDoc("../php/chat.php", sendResponse, true, 'cm=sendMessage&message=' + string + '&cid=1');
-    //var cookie = getCookie("uname");
-    //addRow(cookie.valueOf, string);
-    
+    if(chosen != 0){
+        string = document.getElementById("textFeild").value;
+        document.getElementById("textFeild").value = "";
+        loadDoc("../php/chat.php", sendResponse, true, 'cm=sendMessage&message=' + string + '&cid=' + chosen);
+        //var cookie = getCookie("uname");
+        //addRow(cookie.valueOf, string);
+    }
 }
 //Debug for sending messages
 function sendResponse(xhttp){
@@ -106,10 +125,21 @@ function addChatResponse(xhttp){
     console.log(xhttp.responseText);
     var array = JSON.parse(xhttp.responseText);
     for (i = 0; i < array[0].length; i++) {
-        createCookie(array[0][i], array[0][i]);
+        createCookie(array[0][i], array[1][i]);
         w.postMessage([0,array[0][i]]);
+        // Id två som kommer till workern är undefined
+        chosen = array[0][0];
     }
+    refresh(chosen);
 }
 function addChat(){
     
+}
+function toggleChat(){
+    if (chosen == 1){
+        chosen = 2;
+    }else{
+        chosen = 1;
+    }
+    refresh(chosen);
 }

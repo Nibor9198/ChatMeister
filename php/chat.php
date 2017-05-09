@@ -2,7 +2,6 @@
     include "../config.php";
     if(isset($_POST['cm'])){
         $cm = $_POST['cm'];
-        //
         if($cm == "getChat" && isset($_POST['cid'])){
             if($mysqli = connect_db()){
                 $sql = "select UID, text from message where Chatid = ?";
@@ -10,7 +9,7 @@
                     $stmt->bind_param("i",$_POST['cid']);
                     $stmt->execute();
                     $stmt->bind_result($UID, $text);
-                
+                    
                     $texts = array();
                     while($stmt->fetch()){
                         $sql2 = "select DisplayName from user where ID = ?";
@@ -68,9 +67,8 @@
                     $stmt3->bind_param("i",$cid);
                     $stmt3->execute();
                     $stmt3->bind_result($number);
-                    $stmt3->fetch();
+                    if($stmt3->fetch())                         echo json_encode([$cid, $number]);
                     $stmt3->close();
-                    echo json_encode([$cid, $number]);
                 }
             }
             //FORSTÄTT HÄR MAN FÅR EN TOM ARRAY AAAAAAAAAAAAAAHHH
@@ -88,21 +86,23 @@
                     while($stmt3->fetch()){
                         if($mysqli2 = connect_db()){
                             $sql = "select Number from chat where ID = ?";
+                            
                             if($stmt2 = $mysqli2->prepare($sql)){
-                                $stmt2->bind_param("i",$num);
+                                
+                                $stmt2->bind_param("i",$cid);
                                 $stmt2->execute();
-                
-                                $stmt2->bind_result($cid);
+                                
+                                $stmt2->bind_result($num);
                                 if($stmt2->fetch()){
+                                
                                     array_push($array[0],$cid);
                                     array_push($array[1],$num);
                                 }
-                                $stmt3->close();
+                                $stmt2->close();
                             }
                                 //array_push($array,$cid);
                         }
                     }
-                    
                     $json = json_encode($array);
                     echo $json;
                     $stmt3->close();

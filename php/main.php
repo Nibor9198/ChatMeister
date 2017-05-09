@@ -27,11 +27,13 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
         <?php
             
             //echo $_SESSION['ID'];
-            /* onclick="showLeft()" */
+            /* onclick="showLeft()" 
+            
+            <div class="button" id="BLeftBar" onclick="toggleLeft()"></div>*/
         ?>
         
         <div id="leftBar"></div>
-        <div class="button" id="BLeftBar" onclick="toggleLeft()"></div>
+        <div class="button" id="BLeftBar" onclick="toggleChat()"></div>
         
         
         <div id="friendList"></div>
