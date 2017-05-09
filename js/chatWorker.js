@@ -6,7 +6,7 @@ function checkChat(id){
     //alert("Checking " + id);
     postMessage(id);
     setTimeout("checkChat(" +id +")", 500);
-    
+    //post id är undefined, kan vara senare.
 }
 onmessage = function(e){
     console.log("Message received");
@@ -17,7 +17,7 @@ onmessage = function(e){
         checkChat(e.data[1]);
     }else
     if(e.data[0] == 1){
-        checkChat(e.data[1]);
+        //checkChat(e.data[1]);
     }else 
     if(e.data[0] == 2){
         alive = false;
