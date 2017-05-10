@@ -75,7 +75,7 @@
         }else if(isset($_POST['id']) && $cm == "getChats"){
             if($mysqli = connect_db()){
                 $id = $_POST['id'];
-                $array = array(array(),array());
+                $array = array(array(),array(),array());
                 $cid;
             $sql = "select Chatid from memberof where UID1 = ?";
                 if($stmt3 = $mysqli->prepare($sql)){
@@ -85,18 +85,19 @@
                     $stmt3->bind_result($cid);
                     while($stmt3->fetch()){
                         if($mysqli2 = connect_db()){
-                            $sql = "select Number from chat where ID = ?";
+                            $sql = "select Number, Name  from chat where ID = ?";
                             
                             if($stmt2 = $mysqli2->prepare($sql)){
                                 
                                 $stmt2->bind_param("i",$cid);
                                 $stmt2->execute();
                                 
-                                $stmt2->bind_result($num);
+                                $stmt2->bind_result($num,$name);
                                 if($stmt2->fetch()){
                                 
                                     array_push($array[0],$cid);
                                     array_push($array[1],$num);
+                                     array_push($array[2],$name);
                                 }
                                 $stmt2->close();
                             }

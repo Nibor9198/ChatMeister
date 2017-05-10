@@ -142,7 +142,7 @@ function addChatResponse(xhttp){
     for (i = 0; i < array[0].length; i++) {
         createCookie(array[0][i], array[1][i]);
         w.postMessage([0,array[0][i]]);
-        // Id två som kommer till workern är undefined
+        addToRoomList(array[0][i], array[2][i]);
         chosen = array[0][0];
     }
     refresh(chosen);
@@ -150,6 +150,15 @@ function addChatResponse(xhttp){
 function addChat(){
     
 }
+function setChosen(id){
+    chosen = id;
+    refresh(chosen);
+}
+function addToRoomList(id, name){
+    room = document.getElementById("roomList");
+    room.innerHTML = room.innerHTML + "<li id='li" + id + "' onclick='setChosen( " + id + ")'>" + name + "</li>";
+}
+
 function toggleChat(){
     if (chosen == 1){
         chosen = 2;

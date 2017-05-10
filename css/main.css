@@ -60,9 +60,27 @@ div{
     width:200px !important;
 }
 
-#serverList{
+#roomList{
+    position: inherit;
+    
     background-color: blueviolet;
     float:left;
+    height: 100%;
+    width:150px;
+
+    background-color: blue;
+    list-style: none;
+    padding: 20px;
+    margin:0px;
+}
+#roomList li{
+    background-color: red;
+    text-align: center;
+    margin:0px;
+    margin-top: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    
 }
 #friendList{
 
@@ -73,7 +91,7 @@ div{
     height:600px;
     overflow: hidden;
 }
-#roomList{
+#serverList{
 
 }
 #chat{

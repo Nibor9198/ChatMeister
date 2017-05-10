@@ -38,15 +38,12 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
         
         <div id="friendList"></div>
         <div id="chatRoom">
+            
+            <ul id="roomList"></ul>
             <div id="serverList"></div>
-            <div id="roomList">
-            </div>
             <div id="chat">
                 <div class="button" id="join"></div>
-                <div class = "text" id="chatWindow">
-                    Hello <br>
-                    
-                </div>
+                <div class = "text" id="chatWindow"></div>
                 <form  onsubmit="send()">
                     
                     <input type="text" id="textFeild">
