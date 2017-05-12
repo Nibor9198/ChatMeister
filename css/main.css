@@ -43,7 +43,23 @@ div{
     position:absolute;
     transition: 0.5s;
     height:100%;
-    width: 2px;
+    width: 0px;
+    overflow: hidden;
+}
+#leftBar ul{
+    list-style: none;
+    padding: 0px;
+}
+#leftBar li{
+    background-color: inherit;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: background-color 0.5s;
+    cursor: pointer;
+}
+#leftBar li:hover{
+    background-color: red;
 }
 #BLeftBar{
     position: absolute;
