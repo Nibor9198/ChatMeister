@@ -167,3 +167,6 @@ function toggleChat(){
     }
     refresh(chosen);
 }
+
+
+

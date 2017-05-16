@@ -37,28 +37,3 @@ form{
     
     z-index: 3;
 }
-#shading{
-    position: absolute;
-    top:0;
-    left:0 !important;
-    width:100%;
-    height:200%;
-    background-color: rgba(2,2,2,0.5);
-    
-    transition: background-color 1s;
-    z-index: 2;
-}
-#login{
-    
-}
-#register{
-    
-}
-.hidden{
-    top: -2000px !important;
-    max-height: 0px !important;
-}
-.invis{
-    background-color: rgba(2,2,2,0) !important;
-    
-}

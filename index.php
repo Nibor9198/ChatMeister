@@ -8,8 +8,8 @@
     </head>
     <body>
         <div id="buttonDiv">
-            <div class="button" id="loginB" onclick="showLogin()"><h1>LOGIN</h1></div>
-            <div class="button" id="registerB" onclick="showRegister()"><h1>REGISTER</h1></div>
+            <div class="button" id="loginB" onclick="setHide('login' ,false)"><h1>LOGIN</h1></div>
+            <div class="button" id="registerB" onclick="setHide('register',false)"><h1>REGISTER</h1></div>
         </div>
         <div class="invis hidden" id="shading" onclick="hide()"></div>
         <form class="hidden" id="login" onsubmit="loginUser();">

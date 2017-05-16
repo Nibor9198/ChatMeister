@@ -1,4 +1,7 @@
+//shadeTrigg is a value to created to make sure that the secound delayed setShade2 method does not trigger if the setShade method has been triggered a secound time.
+var shadeTrigg = 0;
 
+//The ajax function
 function loadDoc(url, cFunction, isPOST, message) {
     var xhttp;
     xhttp = new XMLHttpRequest();
@@ -23,17 +26,55 @@ function getCookie(name) {
   var parts = value.split("; " + name + "=");
   if (parts.length == 2) return parts.pop().split(";").shift();
 }
+//Creates a cookie
 function createCookie(name, value){
     document.cookie = name + "=" + value;
 }
 
+// a AJAX test function
+//function testfunc(xhttp){
+//    document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + xhttp.responseText;
+//}
 
-
-//AJAX test function
-function testfunc(xhttp){
-    document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + xhttp.responseText;
-}
+//Logout
 function logout(){
     loadDoc("../php/logout.php", function none(){}, true, "");
     location.replace("../index.php");
+}
+//Disables or Enables all inputs that are child to the id identified element
+function setDisabled(id, bool){
+    Array.from(document.getElementById(id).getElementsByTagName("input")).forEach( function callback(element, i, arr){
+        
+        element.disabled = bool;//prop("disabled", bool);
+    });
+}
+//Hides or Shows the id identified element
+function setHide(id, bool){
+    if(bool)
+        document.getElementById(id).className = "hidden";
+    else
+        document.getElementById(id).className = "";
+    
+    setDisabled(id,bool);
+    setShade(!bool);
+}
+//Hides or shows the shading
+function setShade(bool){
+    shadeTrigg++;
+    
+    var trigg = shadeTrigg;
+    document.getElementById("shading").className = "invis";
+    setTimeout(setShade2,250,bool,trigg);
+
+}
+function setShade2(bool,nr){
+    console.log(shadeTrigg + " " + nr + bool);
+    if(shadeTrigg == nr){
+        
+        if(bool){
+            document.getElementById("shading").className = "";
+        }else{
+            document.getElementById("shading").className = "invis       hidden";
+        }
+    }
 }
