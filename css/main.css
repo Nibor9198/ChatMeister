@@ -34,8 +34,8 @@ nav li:hover{
 }
 
 div{
-   width: 20px;
-    height: 20px;
+   /*width: 20px;
+    height: 20px;*/
     background-color: green;
     border-radius: 5px;
 }
@@ -96,7 +96,8 @@ div{
     margin-top: 10px;
     border-radius: 20px;
     cursor: pointer;
-    
+    transition background-color 1s;
+    user-select: none;
 }
 #friendList{
 
@@ -134,4 +135,19 @@ div{
 .text{
    
 }
+.notice{
+ background-color: green !important;   
+}
+.chosen{
+    background-color: yellow !important;
+}
 
+#createChat{
+    
+}
+#joinChat{
+    
+}
+#friends{
+    
+}

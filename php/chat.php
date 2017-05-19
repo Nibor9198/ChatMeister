@@ -71,7 +71,6 @@
                     $stmt3->close();
                 }
             }
-            //FORSTÄTT HÄR MAN FÅR EN TOM ARRAY AAAAAAAAAAAAAAHHH
         }else if(isset($_POST['id']) && $cm == "getChats"){
             if($mysqli = connect_db()){
                 $id = $_POST['id'];

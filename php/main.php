@@ -46,6 +46,7 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
         <div id="chatRoom">
             
             <ul id="roomList"></ul>
+            <h2 id="chatHeader">No room selected</h2>
             <div id="serverList"></div>
             <div id="chat">
                 <div class="button" id="join"></div>
@@ -58,12 +59,25 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
                 
             </div>
         </div>
+        <div id="shading" class="hidden invis" onclick="hide()"></div>
         
-        <div id="CreateChat">
-            <form>
+         <form id="createChat" onsubmit="createChat()">
+             Create chat <br> 
+            Name<input type="text" name="Name">
+            <input type="checkbox" name="isPublic">
+            <input type="submit">
+        </form>
+        
+        <form id="joinChat">
+            
+        </form>
+        
+        <form id="friends">
+            
                 
-            </form>
-        </div>
+        </form>
+        
+        
         <script src="../js/jquery.js"></script>
     <script src="../js/script.js"></script>
     <script src="../js/main.js"></script>

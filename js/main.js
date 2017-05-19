@@ -4,6 +4,20 @@ $(document).ready(function(){
    $("#chat").on("submit", function(event){
        event.preventDefault();
        event.stopPropagation();
+       
+    $("#createChat").on("submit", function(event){
+       event.preventDefault();
+       event.stopPropagation();
+        alert("Helo");
+   });
+    $("#joinChat").on("submit", function(event){
+       event.preventDefault();
+       event.stopPropagation(); 
+   });  
+       $("#friends").on("submit", function(event){
+       event.preventDefault();
+       event.stopPropagation(); 
+   }); 
    });
     //Creates a worker
     if (typeof(Worker) !== "undefined") {
@@ -39,19 +53,26 @@ function isScrolledDown(){
 
 function checkUpdate(xhttp){
     var a =  JSON.parse(xhttp.responseText);
+    //a[0] is the chat id
+    //a[1] is the chat updatenumber
+    
     //console.log( "apa " + a);
     //console.log("knas" + getCookie("Bababer"));
-    //console.log("Update: " + a[0]);
+    // console.log("Update: " + a[0]);
+    
+    //If there is no cookie for this chat, create one.
     if(getCookie(a[0]) == undefined){
         createCookie(a[0], a[1] - 1);
     }
+    //if the 
     if(getCookie(a[0]) != a[1]) {
+       
         
         createCookie(a[0], a[1]);
         if(a[0] == chosen){
             refresh(a[0]);
-        }else{
-            console.log(a[0] + "is not chosen");
+        }else if(a[0] != chosen){
+            document.getElementById("li" + a[0]).className = "notice";
         }
         
     }
@@ -83,7 +104,7 @@ function chatResponse(xhttp){
         }
  });
         document.getElementById("chatWindow").innerHTML = chatString;
-        console.log(bool);
+        //console.log(bool);
         if(bool)
             scrollDown();
     
@@ -93,7 +114,8 @@ function send(){
     if(chosen != 0){
         string = document.getElementById("textFeild").value;
         document.getElementById("textFeild").value = "";
-        loadDoc("../php/chat.php", sendResponse, true, 'cm=sendMessage&message=' + string + '&cid=' + chosen);
+        if(string != "")
+            loadDoc("../php/chat.php", sendResponse, true, 'cm=sendMessage&message=' + string + '&cid=' + chosen);
         //var cookie = getCookie("uname");
         //addRow(cookie.valueOf, string);
     }
@@ -143,7 +165,7 @@ function addChatResponse(xhttp){
         createCookie(array[0][i], array[1][i]);
         w.postMessage([0,array[0][i]]);
         addToRoomList(array[0][i], array[2][i]);
-        chosen = array[0][0];
+        setChosen(array[0][0]);
     }
     refresh(chosen);
 }
@@ -151,12 +173,25 @@ function addChat(){
     
 }
 function setChosen(id){
+    var old = chosen;
     chosen = id;
     refresh(chosen);
+    if(old != 0)
+        document.getElementById("li" + old).className = "";
+    document.getElementById("li" + chosen).className = "chosen";
+    document.getElementById("chatHeader").innerHTML = document.getElementById("li" + chosen).innerHTML;
 }
 function addToRoomList(id, name){
     room = document.getElementById("roomList");
     room.innerHTML = room.innerHTML + "<li id='li" + id + "' onclick='setChosen( " + id + ")'>" + name + "</li>";
+}
+
+function createChat(){
+    
+    //getElementsByName returns undefined
+    var name = document.getElementsByName("CreateName").value;
+    var isPublic = document.getElementsByName("CreateisPublic").value;
+    console.log(name + " " + isPublic);
 }
 
 function toggleChat(){
@@ -167,6 +202,8 @@ function toggleChat(){
     }
     refresh(chosen);
 }
+
+
 
 
 
