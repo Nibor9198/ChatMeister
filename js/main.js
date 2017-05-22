@@ -4,7 +4,7 @@ $(document).ready(function(){
    $("#chat").on("submit", function(event){
        event.preventDefault();
        event.stopPropagation();
-       
+    });
     $("#createChat").on("submit", function(event){
        event.preventDefault();
        event.stopPropagation();
@@ -18,7 +18,7 @@ $(document).ready(function(){
        event.preventDefault();
        event.stopPropagation(); 
    }); 
-   });
+  
     //Creates a worker
     if (typeof(Worker) !== "undefined") {
         w = new Worker("../js/chatWorker.js");
