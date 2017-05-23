@@ -153,16 +153,19 @@
                //     if($stmt->fetch()){}
                //     $stmt->close();
                 }
-                echo $cid;
+            
                 if($join){
+                    
                     if($mysqli2 = connect_db()){
                         $sql2 = "insert into memberOf values (?,?)";
                         if($stmt2 = $mysqli2->prepare($sql2)){
                             $stmt2->bind_param("ii",$id,$cid);
-                            $stmt2->execute();         
+                            $stmt2->execute();
+                            echo true;
                             $stmt2->close();
                         }
-                    }
+                    }else
+                        echo false;
                 }
             }
             }else{
