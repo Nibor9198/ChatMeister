@@ -109,7 +109,63 @@
                 }
             }
         
-        }else{
+        }else if($cm == "createChat"){
+            if($mysqli = connect_db()){
+                session_start();
+                $name = $_POST['name'];
+                
+                if($_POST['bool'])
+                    $bool = 1;
+                else
+                    $bool = 0;
+                $id = $_SESSION['ID'];
+               // echo $name, 
+                $sql = "insert into chat values (0,?,?,?,0)";
+                if($stmt = $mysqli->prepare($sql)){
+                    $stmt->bind_param("sii",$name, $bool,$id);
+                    $stmt->execute();
+                    if($stmt->fetch()){}
+                    $stmt->close();
+                }
+            }
+        }else if($cm == "joinChat"){
+            if($mysqli = connect_db()){
+                
+                session_start();
+                $cid = $_POST['cid'];
+                $id = $_SESSION['ID'];
+                $join = false;
+                $sql = "select isPublic from chat where ID =?";
+                if($stmt = $mysqli->prepare($sql)){
+                    $stmt->bind_param("i",$cid);
+                    $stmt->execute();
+                    $stmt->bind_result($join);
+                    if($stmt->fetch()){}
+                    $stmt->close();
+                }
+                if(!$join){
+                    //Invite implimentation needed
+                //   $sql = "select INVITOR from invited where ID =? and where Chatid = ?";
+               // if($stmt = $mysqli->prepare($sql)){
+               //     $stmt->bind_param("i",$cid);
+                //    $stmt->execute();
+               //     $stmt->bind_param($join);
+               //     if($stmt->fetch()){}
+               //     $stmt->close();
+                }
+                echo $cid;
+                if($join){
+                    if($mysqli2 = connect_db()){
+                        $sql2 = "insert into memberOf values (?,?)";
+                        if($stmt2 = $mysqli2->prepare($sql2)){
+                            $stmt2->bind_param("ii",$id,$cid);
+                            $stmt2->execute();         
+                            $stmt2->close();
+                        }
+                    }
+                }
+            }
+            }else{
             echo "No messages";
         }
     }else{

@@ -68,8 +68,10 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
             <input type="submit">
         </form>
         
-        <form id="joinChat">
-            
+        <form id="joinChat" onsubmit="joinChat()">
+            Join chat <br> 
+            Id<input type="text" name="Name">
+            <input type="submit">
         </form>
         
         <form id="friends">

@@ -28,13 +28,13 @@ create table MemberOf(
     FOREIGN KEY (Chatid) REFERENCES Chat(ID)
 );
 create table Invited(
-	UID1 integer not null,
-	UID2 integer not null,
+	INVITED integer not null,
+	INVITOR integer not null,
     Chatid integer not null,
     CDate timestamp not null default now(),
     ExDate timestamp not null default now(),
-    FOREIGN KEY (UID1) REFERENCES User(ID),
-    FOREIGN KEY (UID2) REFERENCES User(ID),
+    FOREIGN KEY (INVITED) REFERENCES User(ID),
+    FOREIGN KEY (INVITOR) REFERENCES User(ID),
     FOREIGN KEY (Chatid) REFERENCES Chat(ID)
 );
 create table Message(

@@ -185,13 +185,28 @@ function addToRoomList(id, name){
     room = document.getElementById("roomList");
     room.innerHTML = room.innerHTML + "<li id='li" + id + "' onclick='setChosen( " + id + ")'>" + name + "</li>";
 }
+function getInputs(id){
+    var form = document.getElementById(id);
+    return form.getElementsByTagName("input");
+}
 
 function createChat(){
-    
-    //getElementsByName returns undefined
-    var name = document.getElementsByName("CreateName").value;
-    var isPublic = document.getElementsByName("CreateisPublic").value;
-    console.log(name + " " + isPublic);
+    var a = getInputs("createChat");
+    var name = a[0].value;
+    var isPublic =a[1].checked;
+    loadDoc("../php/chat.php",createChatRe, true, "cm=createChat&name="+name+"&bool="+isPublic);
+}
+function createChatRe(xhttp){
+    console.log(xhttp.responseText);
+}
+
+function joinChat(){
+    var a = getInputs("joinChat");
+    var cid = a[0].value;
+    loadDoc("../php/chat.php",joinChatRe, true, "cm=joinChat&cid="+cid);
+}
+function joinChatRe(xhttp){
+    console.log(xhttp.responseText);
 }
 
 function toggleChat(){

@@ -2,7 +2,7 @@ var alive = false;
 
 
 function checkChat(id){
-    console.log("Checking " + id);
+    //console.log("Checking " + id);
     //alert("Checking " + id);
     postMessage(id);
     setTimeout("checkChat(" +id +")", 1000);
