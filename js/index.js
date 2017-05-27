@@ -14,7 +14,7 @@ function hide(){
     setHide("register", true);
     setShade(false);
 }
-
+//Login
 function loginUser(){
     var form = document.getElementById("login");
     //console.log($form.elements.namedItem("uname").value);
@@ -24,18 +24,17 @@ function loginUser(){
     
     loadDoc("php/login.php", loginResponse, true, 'uname=' + form.elements.namedItem("uname").value + '&psw=' + form.elements.namedItem("psw").value);
 }
+//Login response
 function loginResponse(xhttp){
-    alert(xhttp.responseText);
+    //Checks if the login was succesfull
     if(xhttp.responseText == 1){
         var current = String(window.location);
-        
-        //var url = current.substring(0, current.length - 9) + 'php/main.php';
-        //location.replace(url);
         location.replace('php/main.php');
-        //alert(url);
-        //<?php header('location : ../php/main.php'); ?>
+    }else{
+        alert("Wrong username or password");
     }
 }
+//Register
 function registerUser(){
     var form = document.getElementById("register");
     

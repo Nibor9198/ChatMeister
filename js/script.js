@@ -1,7 +1,7 @@
 //shadeTrigg is a value to created to make sure that the secound delayed setShade2 method does not trigger if the setShade method has been triggered a secound time.
 var shadeTrigg = 0;
 
-//The ajax function
+//The AJAX function
 function loadDoc(url, cFunction, isPOST, message) {
     var xhttp;
     xhttp = new XMLHttpRequest();

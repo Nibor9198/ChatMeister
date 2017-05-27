@@ -52,7 +52,6 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
                 <div class="button" id="join"></div>
                 <div class = "text" id="chatWindow"></div>
                 <form  onsubmit="send()">
-                    
                     <input type="text" id="textFeild">
                     <div class="button" id="send" onclick="send()">Send</div>
                 </form>
@@ -69,9 +68,10 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
         </form>
         
         <form id="joinChat" onsubmit="joinChat()">
-            Join chat <br> 
-            Id<input type="text" name="Name">
-            <input type="submit">
+            Join chat <div class="button" onclick="updateChatTable()">ssdsds</div> <br>  
+            <!-- Id<input type="text" name="Name">
+            <input type="submit"> -->
+            <table></table>
         </form>
         
         <form id="friends">

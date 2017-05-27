@@ -1,7 +1,9 @@
 <?php
     include "../config.php";
+//cm is the command
     if(isset($_POST['cm'])){
         $cm = $_POST['cm'];
+        //Get the messages for a chat
         if($cm == "getChat" && isset($_POST['cid'])){
             if($mysqli = connect_db()){
                 $sql = "select UID, text from message where Chatid = ?";
@@ -23,14 +25,13 @@
                                 $stmt2->close();
                             }
                         }
-                    
-                        //$texts[] = $name . ": " . $text;
                         $texts[count($texts)] = array($name, $text);
                     }
                     $json = json_encode($texts);
                     echo $json;
                 }
             }    
+            //Adds a message to the database
         }else if($cm == "sendMessage" && isset($_POST['message']) && $_POST['cid']){
         
             if($mysqli3 = connect_db()){
@@ -57,6 +58,7 @@
                 }
         
             }
+            //Check if a chat needs updating by retrieving the update number
         }else if(isset($_POST['cid']) && $cm == "checkUpdate"){
             if($mysqli3 = connect_db()){
                 $number;
@@ -67,10 +69,12 @@
                     $stmt3->bind_param("i",$cid);
                     $stmt3->execute();
                     $stmt3->bind_result($number);
-                    if($stmt3->fetch())                         echo json_encode([$cid, $number]);
+                    if($stmt3->fetch())                         
+                        echo json_encode([$cid, $number]);
                     $stmt3->close();
                 }
             }
+            //Get all the chats that a user is member of 
         }else if(isset($_POST['id']) && $cm == "getChats"){
             if($mysqli = connect_db()){
                 $id = $_POST['id'];
@@ -108,7 +112,7 @@
                     $stmt3->close();
                 }
             }
-        
+        //Creates a chat
         }else if($cm == "createChat"){
             if($mysqli = connect_db()){
                 session_start();
@@ -119,15 +123,16 @@
                 else
                     $bool = 0;
                 $id = $_SESSION['ID'];
-               // echo $name, 
                 $sql = "insert into chat values (0,?,?,?,0)";
                 if($stmt = $mysqli->prepare($sql)){
                     $stmt->bind_param("sii",$name, $bool,$id);
                     $stmt->execute();
+                    echo $stmt->insert_id;
                     if($stmt->fetch()){}
                     $stmt->close();
                 }
             }
+            //Join a chat
         }else if($cm == "joinChat"){
             if($mysqli = connect_db()){
                 
@@ -168,7 +173,30 @@
                         echo false;
                 }
             }
-            }else{
+            //Get all the joinable chats
+            }else if($cm == "updateChatTable"){
+                if($mysqli = connect_db()){
+                
+                    session_start();
+                    //impliment invided join
+                    
+                    $id = $_SESSION['ID'];
+                    $cid;
+                    $array = array(array(),array());
+                    $sql = "select ID,Name from chat where isPublic =1";
+                    if($stmt = $mysqli->prepare($sql)){
+                        $stmt->execute();
+                        $stmt->bind_result($cid,$name);
+                        while($stmt->fetch()){
+                            $array[0][] = $cid;
+                            $array[1][] = $name;
+                        }
+                        $stmt->close();
+                        $json = json_encode($array);
+                        echo $json;
+                    }
+                }
+        }else{
             echo "No messages";
         }
     }else{

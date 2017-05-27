@@ -26,10 +26,9 @@ if(isset($_POST['uname']) && isset($_POST['psw'])) {
                     echo $hp . ' ' . $Pass;
                     
                     echo 0;
-                    echo 'NO';
                 }
             }else{
-                echo 'no fetch';
+                echo 0;
             }
             //$result = $mysqli->query($sql);
             $mysqli->close();

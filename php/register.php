@@ -14,7 +14,7 @@ if(isset($_POST['uname']) && isset($_POST['psw'])) {
                 $stmt->execute();
                 $stmt->bind_result($ID);
                 if($stmt->fetch()){
-                    echo "There is already a person with that username"
+                    echo "There is already a person with that username";
                 }else{
                     $sql = "insert into User values (0,?,?,?);";
                     if($stmt = $mysqli->prepare($sql)){
