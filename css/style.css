@@ -1,12 +1,42 @@
+/*
+Svart #0E0B16
+Magenta #a239Ca
+Lila #4717f6
+Vit #E7DfDD
 
-body{
+
+Black #000
+inc #062f4f
+posy #813772
+ember #b82601
+*/
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+input[type=submit]{
+    background-color: #813772;
     
+}
+body{
+    background-color: #0E0B16;
+        color: #E7DfDD;
 }
 .button{
     border-radius: 2px;
     text-align: center;
     display: block;
-    
+    background-color: #062f4f;
     cursor: pointer;
     transition: background-color 0.5s;
     
@@ -17,7 +47,7 @@ body{
     user-select: none;              /* Likely future */ 
 }
 .button:hover{
-    background-color: red;
+    background-color: #b82601;
 }
 #shading{
     position: absolute;

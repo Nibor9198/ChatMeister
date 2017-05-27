@@ -61,9 +61,9 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
         <div id="shading" class="hidden invis" onclick="hide()"></div>
         
          <form id="createChat" onsubmit="createChat()">
-             Create chat <br> 
-            Name<input type="text" name="Name">
-            <input type="checkbox" name="isPublic">
+             <h2>Create chat</h2> <br> 
+            Name<input type="text" name="Name"><br>
+            Public<input type="checkbox" name="isPublic"><br>
             <input type="submit">
         </form>
         
@@ -76,7 +76,9 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
         </form>
         
         <form id="friends">
+            <table id="search">
             
+            </table>
                 
         </form>
         

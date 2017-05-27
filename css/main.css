@@ -1,14 +1,21 @@
-
+/*
+Svart #0E0B16
+Magenta #a239Ca
+Lila #4717f6
+Vit #E7DfDD
+*/
 body{
     margin:0px;
     padding:0px;
     height: 100%;
     overflow: scroll;
+    background-color: #0E0B16;
+    color: #E7DfDD;
 }
 nav{
     width:100%;
     height: 20px;
-    background-color: aqua;
+    background-color: #062f4f;
     height:1%;
     }
 nav ul{
@@ -30,13 +37,13 @@ nav li{
     
 }
 nav li:hover{
-    background-color: bisque;
+    background-color: #062f4f;
 }
 
 div{
    /*width: 20px;
     height: 20px;*/
-    background-color: green;
+    background-color: #062f4f;
     border-radius: 5px;
 }
 #leftBar{
@@ -59,7 +66,7 @@ div{
     cursor: pointer;
 }
 #leftBar li:hover{
-    background-color: red;
+    background-color: #b82601;
 }
 #BLeftBar{
     position: absolute;
@@ -79,18 +86,17 @@ div{
 #roomList{
     position: inherit;
     overflow-y: scroll;
-    background-color: blueviolet;
+    background-color: #062f4f;
     float:left;
     height:560px;
     width:150px;
-
-    background-color: blue;
     list-style: none;
     padding: 20px;
     margin:0px;
+    
 }
 #roomList li{
-    background-color: red;
+    background-color: #813772;
     text-align: center;
     margin:0px;
     margin-top: 10px;
@@ -121,7 +127,7 @@ div{
 #chatWindow{
     width: 400px;
     height:400px;
-    background-color: aliceblue;
+    background-color: #E7DfDD;
     overflow-y: scroll;
     overflow-x:visible;
     
@@ -130,27 +136,47 @@ div{
     width:200px;
     position: relative;
     vertical-align: bottom;
-    margin-top: 40px;
+    margin-top: 0px;
+    text-align:left;
+}
+#chat form .button {
+    display: inline;
+    padding:4px;
+    margin-top: 50px;
+}
+#chat form{
+    background-color: #062f4f;
 }
 .text{
-   
+   color :#0E0B16;
 }
 .notice{
- background-color: green !important;   
+ background-color: #813772 !important;   
 }
 .chosen{
-    background-color: yellow !important;
+    background-color: #b82601 !important;
+}
+form{
+    background-color: #813772;
+    border-radius: 20px
 }
 
 #createChat{
+    width:40%;
+    position: absolute;
     
+    top:60px;
+    left: 30%;
 }
 #joinChat{
     
 }
 #joinChat table{
-    background-color: brown;
+    background-color: #062f4f;
 }
 #friends{
     
+}
+.button{
+    width:60px;
 }

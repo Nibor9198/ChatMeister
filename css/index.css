@@ -20,7 +20,7 @@ body{
     font-size: 40%;
     margin-left: 26%;
     text-align: center;
-    overflow: 
+    overflow: ;
 }
 form{
     position:fixed;
@@ -29,7 +29,7 @@ form{
     top: 0px;
     margin-top:10%;
     left:35%;
-    background-color: green;
+    background-color: #062f4f;
     border-radius: 2px;
     text-align: center;
     max-height: 500px;

@@ -200,7 +200,10 @@ function createChat(){
     var a = getInputs("createChat");
     var name = a[0].value;
     var isPublic =a[1].checked;
-    loadDoc("../php/chat.php",createChatRe, true, "cm=createChat&name="+name+"&bool="+isPublic);
+    var bool = 0;
+    if(isPublic)
+        bool = 1;
+    loadDoc("../php/chat.php",createChatRe, true, "cm=createChat&name="+name+"&bool="+bool);
 }
 //Joins the chat that the user just created
 function createChatRe(xhttp){
