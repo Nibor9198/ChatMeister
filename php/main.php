@@ -71,6 +71,7 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
             Join chat <div class="button" onclick="updateChatTable()">ssdsds</div> <br>  
             <!-- Id<input type="text" name="Name">
             <input type="submit"> -->
+            <input type="text" onkeypress="updateChatTable()">
             <table></table>
         </form>
         

@@ -22,14 +22,10 @@ if(isset($_POST['uname']) && isset($_POST['psw'])) {
                     
                     setcookie("dname", $_SESSION['DNAME'], time() + 2 * 3600,"/");
                     
-                }else{
-                    echo $hp . ' ' . $Pass;
-                    
+                }else
                     echo 0;
-                }
-            }else{
+            }else
                 echo 0;
-            }
             //$result = $mysqli->query($sql);
             $mysqli->close();
         }

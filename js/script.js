@@ -46,15 +46,17 @@ function setDisabled(id, bool){
     Array.from(document.getElementById(id).getElementsByTagName("input")).forEach( function callback(element, i, arr){
         
         element.disabled = bool;//prop("disabled", bool);
+        if(!bool)
+            getInputs(id)[0].focus();
     });
 }
 //Hides or Shows the id identified element
 function setHide(id, bool){
     if(bool)
         document.getElementById(id).className = "hidden";
-    else
+    else{
         document.getElementById(id).className = "";
-    
+    }
     setDisabled(id,bool);
     setShade(!bool);
 }
@@ -68,7 +70,7 @@ function setShade(bool){
 
 }
 function setShade2(bool,nr){
-    console.log(shadeTrigg + " " + nr + bool);
+    
     if(shadeTrigg == nr){
         
         if(bool){
@@ -77,4 +79,9 @@ function setShade2(bool,nr){
             document.getElementById("shading").className = "invis       hidden";
         }
     }
+}
+//Get all the input elements from a element with id id
+function getInputs(id){
+    var form = document.getElementById(id);
+    return form.getElementsByTagName("input");
 }

@@ -117,11 +117,11 @@
             if($mysqli = connect_db()){
                 session_start();
                 $name = $_POST['name'];
-                
-                if($_POST['bool'])
-                    $bool = 1;
-                else
-                    $bool = 0;
+                $bool = $_POST['bool'];
+                //if($_POST['bool'])
+                //    $bool = 1;
+                //else
+                //    $bool = 0;
                 $id = $_SESSION['ID'];
                 $sql = "insert into chat values (0,?,?,?,0)";
                 if($stmt = $mysqli->prepare($sql)){
@@ -134,43 +134,23 @@
             }
             //Join a chat
         }else if($cm == "joinChat"){
-            if($mysqli = connect_db()){
-                
                 session_start();
                 $cid = $_POST['cid'];
                 $id = $_SESSION['ID'];
-                $join = false;
-                $sql = "select isPublic from chat where ID =?";
-                if($stmt = $mysqli->prepare($sql)){
-                    $stmt->bind_param("i",$cid);
-                    $stmt->execute();
-                    $stmt->bind_result($join);
-                    if($stmt->fetch()){}
-                    $stmt->close();
-                }
-                if(!$join){
-                    //Invite implimentation needed
-                //   $sql = "select INVITOR from invited where ID =? and where Chatid = ?";
-               // if($stmt = $mysqli->prepare($sql)){
-               //     $stmt->bind_param("i",$cid);
-                //    $stmt->execute();
-               //     $stmt->bind_param($join);
-               //     if($stmt->fetch()){}
-               //     $stmt->close();
-                }
-            
-                if($join){
-                    
-                    if($mysqli2 = connect_db()){
-                        $sql2 = "insert into memberOf values (?,?)";
-                        if($stmt2 = $mysqli2->prepare($sql2)){
-                            $stmt2->bind_param("ii",$id,$cid);
-                            $stmt2->execute();
-                            echo true;
-                            $stmt2->close();
+            echo 1;
+                if(!memberOfChat($id,$cid)){
+                    echo 2;
+                    if(isPublic($cid) || isOwner($id,$cid) || isInvited($id,$cid)){
+                        echo 3;
+                        if($mysqli2 = connect_db()){
+                            $sql2 = "insert into memberOf values (?,?)";
+                            if($stmt2 = $mysqli2->prepare($sql2)){
+                                $stmt2->bind_param("ii",$id,$cid);
+                                $stmt2->execute();
+                                echo true;
+                                $stmt2->close();
                         }
-                    }else
-                        echo false;
+                    }
                 }
             }
             //Get all the joinable chats
@@ -182,9 +162,12 @@
                     
                     $id = $_SESSION['ID'];
                     $cid;
+                    $like =  "%{$_POST['like']}%";
+                    //echo $like;// $_POST['like'];
                     $array = array(array(),array());
-                    $sql = "select ID,Name from chat where isPublic =1";
+                    $sql = "select ID,Name from chat where isPublic =1 and Name LIKE ?";
                     if($stmt = $mysqli->prepare($sql)){
+                        $stmt->bind_param("s",$like);
                         $stmt->execute();
                         $stmt->bind_result($cid,$name);
                         while($stmt->fetch()){
@@ -201,5 +184,58 @@
         }
     }else{
         echo "NOOOOOS";
+    }
+
+function memberOfChat($id, $cid){
+    if($mysqli = connect_db()){
+        $sql = "select * from memberof where ChatId = ? and UID1 = ?";
+        if($stmt = $mysqli->prepare($sql)){
+            $stmt->bind_param("ii",$cid,$id);
+            $stmt->execute();
+            $stmt->bind_result($cid,$name);
+             return $stmt->fetch();
+                
+             
+             $stmt->close();
+                 
+            }
+    }
+}
+function isPublic($cid){
+    if($mysqli = connect_db()){
+        echo 4;
+        $sql = "select isPublic from chat where ID =?";
+        if($stmt = $mysqli->prepare($sql)){
+            $stmt->bind_param("i",$cid);
+            $stmt->execute();
+            $stmt->bind_result($join);
+            if($stmt->fetch()){
+                return $join;
+            }
+            $stmt->close();
+        }
+        
+    }
+}
+    function isOwner($id,$cid){
+         if($mysqli = connect_db()){
+        echo 4;
+        $sql = "select ID from chat where ID =? and Ownerid = ?";
+        if($stmt = $mysqli->prepare($sql)){
+            $stmt->bind_param("ii",$cid,$id);
+            $stmt->execute();
+            $stmt->bind_result($i);
+            if($stmt->fetch()){
+                return true;
+            }else{
+                return false;
+            }
+            $stmt->close();
+        }
+        
+    }
+    }
+    function isInvited($id,$cid){
+        return false;
     }
 ?>

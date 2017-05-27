@@ -8,8 +8,8 @@ function checkChat(id){
     setTimeout("checkChat(" +id +")", 1000);
 }
 onmessage = function(e){
-    console.log("Message received");
-    console.log(e.data);
+    //console.log("Message received");
+    //console.log(e.data);
     //data[0] = start a chatChecker with id data[1]
     if(e.data[0] == 0){
         alive = true;

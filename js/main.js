@@ -159,9 +159,10 @@ function toggleLeft(){
 function updateChatList(){
     loadDoc("../php/Chat.php", updateChatListRe, true, "cm=getChats&id=" + getCookie("id"));
 }
-//repöaces the old chat list
+//replaces the old chat list
 function updateChatListRe(xhttp){
     clearRoomList();
+    console.log(xhttp.responseText);
     var array = JSON.parse(xhttp.responseText);
     for (i = 0; i < array[0].length; i++) {
         createCookie(array[0][i], array[1][i]);
@@ -194,11 +195,6 @@ function addToRoomList(id, name){
     room = document.getElementById("roomList");
     room.innerHTML = room.innerHTML + "<li id='li" + id + "' onclick='setChosen( " + id + ")'>" + name + "</li>";
 }
-//get all the input elements from a element with id id
-function getInputs(id){
-    var form = document.getElementById(id);
-    return form.getElementsByTagName("input");
-}
 //Creates a chat
 function createChat(){
     var a = getInputs("createChat");
@@ -208,6 +204,7 @@ function createChat(){
 }
 //Joins the chat that the user just created
 function createChatRe(xhttp){
+    console.log(xhttp.responseText);
     joinChat(xhttp.responseText);
 }
 //Joins a chat
@@ -216,14 +213,18 @@ function joinChat(cid){
 }
 //Updates the chatlist after the user has joined a new chat
 function joinChatRe(xhttp){
+    
     updateChatList();
 }
 //Updates the chatTable
 function updateChatTable(){
-    loadDoc("../php/chat.php", updateChatTableRe, true, "cm=updateChatTable");
+    var like = getInputs("joinChat")[0].value;
+    console.log(like);
+    loadDoc("../php/chat.php", updateChatTableRe, true, "cm=updateChatTable&like=" + like);
 }
 //Inserts the joinable chats into the chattable
 function updateChatTableRe(xhttp){
+    console.log(xhttp.responseText);
     var a =  JSON.parse(xhttp.responseText);
     var table = document.getElementById("joinChat").getElementsByTagName("table")[0];
         table.innerHTML = "";
@@ -232,16 +233,6 @@ function updateChatTableRe(xhttp){
             "<tr><td>"+ a[1][i] +"</td><td class='button' onclick='joinChat("+ a[0][i] +")'>Join</td></tr>";
         
     }
-}
-
-//Don't mind this
-function toggleChat(){
-    if (chosen == 1){
-        chosen = 2;
-    }else{
-        chosen = 1;
-    }
-    refresh(chosen);
 }
 
 
