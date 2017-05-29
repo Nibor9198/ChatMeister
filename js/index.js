@@ -21,8 +21,9 @@ function loginUser(){
     //console.log($form.elements.namedItem("psw").value);
     //loadDoc(url, cFunction, isPOST, message)
     //var $obj = {"uname" : $form.elements.namedItem("uname").value, "pwd" : $form.elements.namedItem("psw").value};
-    
-    loadDoc("php/login.php", loginResponse, true, 'uname=' + form.elements.namedItem("uname").value + '&psw=' + form.elements.namedItem("psw").value);
+    if(isInputsNotEmpty("login")){
+        loadDoc("php/login.php", loginResponse, true, 'uname=' + form.elements.namedItem("uname").value + '&psw=' + form.elements.namedItem("psw").value);
+    }
 }
 //Login response
 function loginResponse(xhttp){
@@ -36,8 +37,16 @@ function loginResponse(xhttp){
 }
 //Register
 function registerUser(){
-    var form = document.getElementById("register");
     
-    loadDoc("php/register.php", loginResponse, true, 'uname=' + form.elements.namedItem("uname").value + '&psw=' + form.elements.namedItem("psw").value + "&dname="+ form.elements.namedItem("dname").value + "&pswr=" + form.elements.namedItem("pswr").value);
+    var form = document.getElementById("register");
+    if(isInputsNotEmpty("register")){
+       loadDoc("php/register.php", registerResponse, true, 'uname=' + form.elements.namedItem("uname").value + '&psw=' + form.elements.namedItem("psw").value + "&dname="+ form.elements.namedItem("dname").value + "&pswr=" + form.elements.namedItem("pswr").value); 
+    }
+    
+}
+function registerResponse(xhttp){
+    if(xhttp.responseText !== ""){
+        alert(xhttp.responseText);
+    }
 }
 

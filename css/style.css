@@ -11,6 +11,10 @@ posy #813772
 ember #b82601
 */
 
+
+
+
+
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -25,7 +29,14 @@ ember #b82601
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 input[type=submit]{
-    background-color: #813772;
+    background-color:#062f4f;
+    border-width: 0px;
+    padding:2px;
+    color: #E7DfDD;
+    
+}
+input[type=submit] :hover{
+    background-color: #702661;/*#813772;*/
     
 }
 body{

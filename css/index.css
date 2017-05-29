@@ -1,5 +1,7 @@
+
 body{
     overflow: hidden;
+    padding:0px;
 }
 #buttonDiv{
     width: 20%;
@@ -12,7 +14,7 @@ body{
     width:90%;
     padding: 5%;
     font-size: 1em;
-    
+    min-width: 160px; 
 }
 #registerB{
     width:40%;
@@ -21,6 +23,7 @@ body{
     margin-left: 26%;
     text-align: center;
     overflow: ;
+    min-width: 72px;
 }
 form{
     position:fixed;
@@ -36,4 +39,22 @@ form{
     transition: max-height 1s, top 1s;
     
     z-index: 3;
+}
+@media screen and (max-width: 900px) {
+    #buttonDiv{
+    /*
+        width: 100% !important;
+        margin-left: 0px;
+    */
+    }
+    #registerB{
+        margin-left: 0px !important;
+        width: 160px;
+        padding:5% !important;
+    }
+}
+@media screen and (max-width: 150px){
+    form{
+        width:100%;
+    }
 }

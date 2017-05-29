@@ -40,6 +40,7 @@ if(isset($_POST['uname']) && isset($_POST['psw'])) {
         
     }else{
         //Repeated Password is not the same
+        echo"Passwords does not match";
     }
     
     

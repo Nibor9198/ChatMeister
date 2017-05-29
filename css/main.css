@@ -167,14 +167,31 @@ form{
     
     top:60px;
     left: 30%;
+    z-index: 2;
+    transition: max-height 1s, top 1s;
+    text-align: center;
 }
 #joinChat{
+    width:40%;
+    position: absolute;
     
+    top:60px;
+    left: 30%;
+    z-index: 2;
+    transition: max-height 1s, top 1s;
+    text-align: center;
+}
+#joinChat .button{
+    width: 100%;
 }
 #joinChat table{
     background-color: #062f4f;
+    width: 100%;
+    text-align: center;
 }
 #friends{
+    z-index: 2;
+    transition: max-height 1s, top 1s;
     
 }
 .button{

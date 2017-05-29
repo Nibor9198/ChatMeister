@@ -12,7 +12,7 @@ $(document).ready(function(){
     $("#createChat").on("submit", function(event){
        event.preventDefault();
        event.stopPropagation();
-        alert("Helo");
+        //alert("Helo");
    });
     $("#joinChat").on("submit", function(event){
        event.preventDefault();
@@ -170,7 +170,8 @@ function updateChatListRe(xhttp){
         addToRoomList(array[0][i], array[2][i]);
         
     }
-    setChosen(array[0][0]);
+    if(array[0][0])
+        setChosen(array[0][0]);
     refresh(chosen);
 }
 function addChat(){
@@ -183,7 +184,9 @@ function setChosen(id){
     refresh(chosen);
     if(old != 0)
         document.getElementById("li" + old).className = "";
-    document.getElementById("li" + chosen).className = "chosen";
+    //alert(id);
+    if(id != 0)
+        document.getElementById("li" + chosen).className = "chosen";
     document.getElementById("chatHeader").innerHTML = document.getElementById("li" + chosen).innerHTML;
 }
 //Clears the roomlist
@@ -230,12 +233,18 @@ function updateChatTableRe(xhttp){
     console.log(xhttp.responseText);
     var a =  JSON.parse(xhttp.responseText);
     var table = document.getElementById("joinChat").getElementsByTagName("table")[0];
-        table.innerHTML = "";
+        table.innerHTML = "<tr><td>Name</td><td>Join</td></tr>";
     for (i = 0; i < a[0].length; i++) {
         table.innerHTML = table.innerHTML + 
             "<tr><td>"+ a[1][i] +"</td><td class='button' onclick='joinChat("+ a[0][i] +")'>Join</td></tr>";
         
     }
+}
+function hide(){
+    setHide("createChat",true);
+    setHide("joinChat", true);
+    //setHide("friends", true);
+    setShade(false);
 }
 
 

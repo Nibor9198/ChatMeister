@@ -85,3 +85,15 @@ function getInputs(id){
     var form = document.getElementById(id);
     return form.getElementsByTagName("input");
 }
+function isInputsNotEmpty(id){
+    var arr = getInputs(id);
+    bool = true;
+    for(var i = 0; i < arr.length; i++){
+        
+        if (arr[i].value == "" && arr[i].type !== "submit"){
+            
+            bool = false;
+        }
+    }
+    return bool;
+}
