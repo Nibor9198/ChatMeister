@@ -34,8 +34,8 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
         
         <div id="leftBar">
             <ul>
-                <li>Create Chat</li>
-                <li>Join Chat</li>
+                <li onclick="setHide('createChat',false)">Create Chat</li>
+                <li onclick="setHide('joinChat',false);updateChatTable()">Join Chat</li>
                 <li>Friends </li>
             </ul>
         </div>
@@ -60,26 +60,31 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
         </div>
         <div id="shading" class="hidden invis" onclick="hide()"></div>
         
-         <form id="createChat" onsubmit="createChat()">
+         <form id="createChat" onsubmit="createChat()" class="hidden">
              <h2>Create chat</h2> <br> 
             Name<input type="text" name="Name"><br>
             Public<input type="checkbox" name="isPublic"><br>
             <input type="submit">
         </form>
         
-        <form id="joinChat" onsubmit="joinChat()">
-            Join chat <div class="button" onclick="updateChatTable()">ssdsds</div> <br>  
+        <form id="joinChat" onsubmit="joinChat()" class="hidden">
+            <h2>Join chat</h2>  <br>  
             <!-- Id<input type="text" name="Name">
             <input type="submit"> -->
             <input type="text" onkeypress="updateChatTable()">
-            <table></table>
+            <div class="button" onclick="updateChatTable()">Refresh</div>
+            <table>
+                <tr>
+                    <td>Servername</td>
+                    <td>Join</td>
+                </tr>
+            </table>
         </form>
         
         <form id="friends">
             <table id="search">
             
             </table>
-                
         </form>
         
         
