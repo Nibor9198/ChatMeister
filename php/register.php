@@ -14,30 +14,25 @@ if(isset($_POST['uname']) && isset($_POST['psw'])) {
                 $stmt->execute();
                 $stmt->bind_result($ID);
                 if($stmt->fetch()){
-                    echo "There is already a person with that username";
+                    echo "1";
                 }else{
                     $sql = "insert into User values (0,?,?,?);";
                     if($stmt = $mysqli->prepare($sql)){
-                        
                         $hash = hasha($p);
-                $stmt->bind_param("sss",$uname,$hash, $dname);
-                $stmt->execute();
-                //$stmt->bind_result();
-                
-            }
+                        $stmt->bind_param("sss",$uname,$hash, $dname);
+                        $stmt->execute();
+                        echo 0;            
+                    }
                 
                 }
-            //$result = $mysqli->query($sql);
-            
             }
-        //print_r($mysqli->error);
         $mysqli->close();
         }
         
         
     }else{
         //Repeated Password is not the same
-        echo"Passwords does not match";
+        echo"2";
     }
     
     

@@ -46,7 +46,17 @@ function registerUser(){
 }
 function registerResponse(xhttp){
     if(xhttp.responseText !== ""){
-        alert(xhttp.responseText);
+        //alert(xhttp.responseText);
+        var s = xhttp.responseText;
+        if (s == "0"){
+            hide();
+            setHide("login", false);
+            
+        }else if(s == "1"){
+            alert("There is already a person with that username");
+        }else if(s == "2"){
+            alert("Passwords does not match");
+        }
     }
 }
 

@@ -163,7 +163,7 @@ function updateChatList(){
 //replaces the old chat list
 function updateChatListRe(xhttp){
     clearRoomList();
-    console.log(xhttp.responseText);
+    //console.log(xhttp.responseText);
     var array = JSON.parse(xhttp.responseText);
     for (i = 0; i < array[0].length; i++) {
         createCookie(array[0][i], array[1][i]);
@@ -211,7 +211,9 @@ function createChat(){
 }
 //Joins the chat that the user just created
 function createChatRe(xhttp){
-    console.log(xhttp.responseText);
+    //console.log(xhttp.responseText);
+    hide(); 
+    toggleLeft();
     joinChat(xhttp.responseText);
 }
 //Joins a chat
@@ -226,12 +228,12 @@ function joinChatRe(xhttp){
 //Updates the chatTable
 function updateChatTable(){
     var like = getInputs("joinChat")[0].value;
-    console.log(like);
+    //console.log(like);
     loadDoc("../php/chat.php", updateChatTableRe, true, "cm=updateChatTable&like=" + like);
 }
 //Inserts the joinable chats into the chattable
 function updateChatTableRe(xhttp){
-    console.log(xhttp.responseText);
+    //console.log(xhttp.responseText);
     var a =  JSON.parse(xhttp.responseText);
     var table = document.getElementById("joinChat").getElementsByTagName("table")[0];
         table.innerHTML = "<tr id='header'><td>Name</td><td>Join</td></tr>";
