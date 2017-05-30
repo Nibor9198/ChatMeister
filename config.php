@@ -2,7 +2,7 @@
 
 
 function connect_db() {
-    $mysqli = new mysqli('localhost','root', '' ,'chatmeister');
+    $mysqli = new mysqli('213.180.89.88','robinboregrimdb', 'aeK#100s' ,'robinboregrimdb');
 
     if (!$mysqli->set_charset("utf8")) {
         echo "Fel vid inställning av teckentabell utf8: %s\n". $mysqli->error;

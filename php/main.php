@@ -18,10 +18,10 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
         <link rel="stylesheet" href="../css/main.css">
     </head>
     <body>
-        <nav>
-            <!--<table><tr><td><?php //echo $_SESSION['DNAME']; ?></td></tr></table>-->
-            <ul><li><?php echo $_SESSION['DNAME']; ?></li><li>Thing</li><li onclick="logout()">Logout</li></ul>
-        </nav>
+        <!--<nav>
+            <table><tr><td><?php //echo $_SESSION['DNAME']; ?></td></tr></table>
+            <li>Thing</li></ul>
+        </nav>-->
         
         
         <?php
@@ -34,12 +34,17 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
         
         <div id="leftBar">
             <ul>
+                <li id="top"><?php echo $_SESSION['DNAME']; ?></li>
                 <li onclick="setHide('createChat',false)">Create Chat</li>
                 <li onclick="setHide('joinChat',false);updateChatTable()">Join Chat</li>
-                <li>Friends </li>
+                <li onclick="logout()">Logout</li>
             </ul>
         </div>
-        <div class="button" id="BLeftBar" onclick="toggleLeft()"></div>
+        <div class="button" id="BLeftBar" onclick="toggleLeft()">
+            <div id="top" class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+        </div>
         
         
         <div id="friendList"></div>
@@ -74,7 +79,7 @@ if(!(isset($_SESSION['UNAME']) && isset($_SESSION['DNAME']) && isset($_SESSION['
             <input type="text" onkeypress="updateChatTable()">
             <div class="button" onclick="updateChatTable()">Refresh</div>
             <table>
-                <tr>
+                <tr id="header">
                     <td>Servername</td>
                     <td>Join</td>
                 </tr>

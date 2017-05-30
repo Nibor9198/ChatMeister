@@ -32,7 +32,7 @@ $(document).ready(function(){
         w.onmessage = function(event){
             var id = event.data;
             //Returns the update number of the chat with id id to checkUpdate()
-            loadDoc("../php/Chat.php",checkUpdate, true,"cid=" + id + "&cm=checkUpdate");
+            loadDoc("../php/chat.php",checkUpdate, true,"cid=" + id + "&cm=checkUpdate");
         }
         //Update the list of chatrooms
         updateChatList();
@@ -155,9 +155,10 @@ function toggleLeft(){
          document.getElementById("leftBar").className = "";
     }
 }
+
 //Ask the server for an updated chatlist
 function updateChatList(){
-    loadDoc("../php/Chat.php", updateChatListRe, true, "cm=getChats&id=" + getCookie("id"));
+    loadDoc("../php/chat.php", updateChatListRe, true, "cm=getChats&id=" + getCookie("id"));
 }
 //replaces the old chat list
 function updateChatListRe(xhttp){
@@ -233,10 +234,10 @@ function updateChatTableRe(xhttp){
     console.log(xhttp.responseText);
     var a =  JSON.parse(xhttp.responseText);
     var table = document.getElementById("joinChat").getElementsByTagName("table")[0];
-        table.innerHTML = "<tr><td>Name</td><td>Join</td></tr>";
+        table.innerHTML = "<tr id='header'><td>Name</td><td>Join</td></tr>";
     for (i = 0; i < a[0].length; i++) {
         table.innerHTML = table.innerHTML + 
-            "<tr><td>"+ a[1][i] +"</td><td class='button' onclick='joinChat("+ a[0][i] +")'>Join</td></tr>";
+            "<tr><td>"+ a[1][i] +"</td><td class='button' onclick='joinChat("+ a[0][i] +");hide(); toggleLeft()'>Join</td></tr>";
         
     }
 }

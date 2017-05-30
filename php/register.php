@@ -18,15 +18,12 @@ if(isset($_POST['uname']) && isset($_POST['psw'])) {
                 }else{
                     $sql = "insert into User values (0,?,?,?);";
                     if($stmt = $mysqli->prepare($sql)){
-                $stmt->bind_param("sss",$uname, hasha($p), $dname);
+                        
+                        $hash = hasha($p);
+                $stmt->bind_param("sss",$uname,$hash, $dname);
                 $stmt->execute();
                 //$stmt->bind_result();
-                if($stmt->fetch()){
-                    
-                }else{
-                    
                 
-                }
             }
                 
                 }

@@ -3,7 +3,7 @@ include '../config.php';
 if(isset($_POST['uname']) && isset($_POST['psw'])) {
     $u = $_POST['uname'];
     $p = $_POST['psw'];
-    $sql = "select ID,Password,DisplayName  from user where Username = ?;";
+    $sql = "select ID,Password,DisplayName from User where Username = ?;";
     if($mysqli = connect_db()){
         if($stmt = $mysqli->prepare($sql)){
             $hp = hasha($p);

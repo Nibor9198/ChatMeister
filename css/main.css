@@ -4,6 +4,10 @@ Magenta #a239Ca
 Lila #4717f6
 Vit #E7DfDD
 */
+element{
+    --inc :#062f4f;
+}
+
 body{
     margin:0px;
     padding:0px;
@@ -67,6 +71,9 @@ div{
 }
 #leftBar li:hover{
     background-color: #b82601;
+}
+#leftBar li#top:hover{
+    background-color: inherit;
 }
 #BLeftBar{
     position: absolute;
@@ -151,7 +158,7 @@ div{
    color :#0E0B16;
 }
 .notice{
- background-color: #813772 !important;   
+ background-color: #0E0B16 !important;   
 }
 .chosen{
     background-color: #b82601 !important;
@@ -189,6 +196,9 @@ form{
     width: 100%;
     text-align: center;
 }
+#joinChat table #header{
+    background-color: #813772 !important;
+}
 #friends{
     z-index: 2;
     transition: max-height 1s, top 1s;
@@ -196,4 +206,14 @@ form{
 }
 .button{
     width:60px;
+}
+.stripe{
+    background-color: #E7DfDD;
+    width: 25px;
+    height: 4px;
+    margin-top: 4px;
+    margin-left: 7px
+}
+.stripe#top{
+    margin-top: 10px;
 }

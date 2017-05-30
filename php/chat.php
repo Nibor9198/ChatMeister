@@ -6,7 +6,7 @@
         //Get the messages for a chat
         if($cm == "getChat" && isset($_POST['cid'])){
             if($mysqli = connect_db()){
-                $sql = "select UID, text from message where Chatid = ?";
+                $sql = "select UID, text from Message where Chatid = ?";
                 if($stmt = $mysqli->prepare($sql)){
                     $stmt->bind_param("i",$_POST['cid']);
                     $stmt->execute();
@@ -14,7 +14,7 @@
                     
                     $texts = array();
                     while($stmt->fetch()){
-                        $sql2 = "select DisplayName from user where ID = ?";
+                        $sql2 = "select DisplayName from User where ID = ?";
                         $name = "Herobrine";
                         if($mysqli2 = connect_db()){
                             if($stmt2 = $mysqli2->prepare($sql2)){
@@ -37,7 +37,7 @@
             if($mysqli3 = connect_db()){
                 session_start();
                 echo $_POST['cid'];
-                $sql = "insert into message values (0,?,now(),?,?)";
+                $sql = "insert into Message values (0,?,now(),?,?)";
                 if($stmt3 = $mysqli3->prepare($sql)){
                     $message = $_POST['message'];
                     $id = $_SESSION['ID'];
@@ -46,7 +46,7 @@
                     $stmt3->execute();
                     //$stmt3->fetch();
                     $stmt3->close();
-                    $sql = "UPDATE chat set number = (number + 1) where ID = ?";
+                    $sql = "UPDATE Chat set Number = (Number + 1) where ID = ?";
                     if($stmt3 = $mysqli3->prepare($sql)){
                         $message = $_POST['message'];
                         $id = $_SESSION['ID'];
@@ -62,7 +62,7 @@
         }else if(isset($_POST['cid']) && $cm == "checkUpdate"){
             if($mysqli3 = connect_db()){
                 $number;
-                $sql = "select number from chat where id = ?";
+                $sql = "select Number from Chat where ID = ?";
                 if($stmt3 = $mysqli3->prepare($sql)){
                     
                     $cid = $_POST['cid'];
@@ -80,7 +80,7 @@
                 $id = $_POST['id'];
                 $array = array(array(),array(),array());
                 $cid;
-            $sql = "select Chatid from memberof where UID1 = ?";
+            $sql = "select Chatid from MemberOf where UID1 = ?";
                 if($stmt3 = $mysqli->prepare($sql)){
                     $stmt3->bind_param("i",$id);
                     $stmt3->execute();
@@ -88,7 +88,7 @@
                     $stmt3->bind_result($cid);
                     while($stmt3->fetch()){
                         if($mysqli2 = connect_db()){
-                            $sql = "select Number, Name  from chat where ID = ?";
+                            $sql = "select Number, Name  from Chat where ID = ?";
                             
                             if($stmt2 = $mysqli2->prepare($sql)){
                                 
@@ -123,7 +123,7 @@
                 //else
                 //    $bool = 0;
                 $id = $_SESSION['ID'];
-                $sql = "insert into chat values (0,?,?,?,0)";
+                $sql = "insert into Chat values (0,?,?,?,0)";
                 if($stmt = $mysqli->prepare($sql)){
                     $stmt->bind_param("sii",$name, $bool,$id);
                     $stmt->execute();
@@ -143,7 +143,7 @@
                     if(isPublic($cid) || isOwner($id,$cid) || isInvited($id,$cid)){
                         echo 3;
                         if($mysqli2 = connect_db()){
-                            $sql2 = "insert into memberOf values (?,?)";
+                            $sql2 = "insert into MemberOf values (?,?)";
                             if($stmt2 = $mysqli2->prepare($sql2)){
                                 $stmt2->bind_param("ii",$id,$cid);
                                 $stmt2->execute();
@@ -165,7 +165,7 @@
                     $like =  "%{$_POST['like']}%";
                     //echo $like;// $_POST['like'];
                     $array = array(array(),array());
-                    $sql = "select ID,Name from chat where isPublic =1 and Name LIKE ?";
+                    $sql = "select ID,Name from Chat where isPublic = 1 and Name LIKE ?";
                     if($stmt = $mysqli->prepare($sql)){
                         $stmt->bind_param("s",$like);
                         $stmt->execute();
@@ -188,7 +188,7 @@
 
 function memberOfChat($id, $cid){
     if($mysqli = connect_db()){
-        $sql = "select * from memberof where ChatId = ? and UID1 = ?";
+        $sql = "select * from MemberOf where ChatId = ? and UID1 = ?";
         if($stmt = $mysqli->prepare($sql)){
             $stmt->bind_param("ii",$cid,$id);
             $stmt->execute();
@@ -204,7 +204,7 @@ function memberOfChat($id, $cid){
 function isPublic($cid){
     if($mysqli = connect_db()){
         echo 4;
-        $sql = "select isPublic from chat where ID =?";
+        $sql = "select isPublic from Chat where ID =?";
         if($stmt = $mysqli->prepare($sql)){
             $stmt->bind_param("i",$cid);
             $stmt->execute();
@@ -220,7 +220,7 @@ function isPublic($cid){
     function isOwner($id,$cid){
          if($mysqli = connect_db()){
         echo 4;
-        $sql = "select ID from chat where ID =? and Ownerid = ?";
+        $sql = "select ID from Chat where ID =? and Ownerid = ?";
         if($stmt = $mysqli->prepare($sql)){
             $stmt->bind_param("ii",$cid,$id);
             $stmt->execute();
